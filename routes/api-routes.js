@@ -36,6 +36,17 @@ module.exports = function(app) {
     });
   });
 
+  //all items in use
+  app.get("/api/inuse", function(req, res) {
+    db.Item.findAll({
+      where: {
+        inUse: 1
+      }
+    }).then(function(result) {
+      res.json(result);
+    });
+  });
+
   // view things less than some price
   app.get("/api/price/:price", function(req, res) {
     db.Item.findAll({

@@ -41,6 +41,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DECIMAL(10,2),
             defaultValue: 0.00,
             allowNull: true
+        },
+        inUse: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     });
 
