@@ -30,6 +30,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.TEXT,
             allowNull: true
         },
+        itemimage: {
+            type: DataTypes.BLOB,
+            allowNull: true
+        },
         //item rental price
         itemprice: {
             type: DataTypes.DECIMAL,
