@@ -36,8 +36,8 @@ module.exports = function (sequelize, DataTypes) {
         },
         //item rental price
         itemprice: {
-            type: DataTypes.DECIMAL,
-            defaultValue: 0,
+            type: DataTypes.DECIMAL(10,2),
+            defaultValue: 0.00,
             allowNull: true
         }
     });
