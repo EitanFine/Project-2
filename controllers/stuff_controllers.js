@@ -10,16 +10,27 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 var Sequelize = require("sequelize");
-
-router.get("/", function(req, res) {
-  db.Item.findAll({}).then(function(results) {
-
-    var hbsObject = {
-      Item: results
+router.get("/", function(req, res){
+  db.Category.findAll({}).then(function(result){
+    var anotherObject = {
+      categories: result
     }
-    res.render("index", hbsObject);
-  });
-});
+    res.render("index",anotherObject)
+  })
+})
+// router.get("/", function(req, res) {
+//   db.Item.findAll({}).then(function(results) {
+
+//     var hbsObject = {
+//       Item: results
+//     }
+//     res.render("index", hbsObject);
+//   });
+
+  
+// });
+
+
 
 
 // router.get("/:catId", function(req, res) {

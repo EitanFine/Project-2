@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row"></div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    {{!--
+
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             {{#each categories}}
@@ -9,10 +9,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
                     <span class="caret"></span>
                 </a>
-                <ul class="dropdown-menu">
+                
                     {{this.categoryName}}
-                </ul>
+                
             </li>
+            {{/each}}
         </ul>
         <form class="navbar-form navbar-left">
             <div class="form-group">
@@ -23,12 +24,13 @@
         <ul class="nav navbar-nav navbar-right">
             <button type="button" class="btn btn-default navbar-btn">List Your Item</button>
         </ul>
-    </div> --}}
+    </div>
     <!-- /.navbar-collapse -->
     <hr>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            {{!-- <h3 class="panel-title">{{this.categoryName}}</h3> --}}
+            {{!--
+            <h3 class="panel-title">{{this.categoryName}}</h3> --}}
         </div>
         <div class="panel-body">
             <div class="row">
@@ -55,12 +57,8 @@
                 </div>
                 {{/each}}
 
-<h1>a sdfasdf</h1>
             </div>
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
-<!-- </nav> -->
 </div>
