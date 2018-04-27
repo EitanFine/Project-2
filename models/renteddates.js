@@ -12,13 +12,13 @@ module.exports = function (sequelize, DataTypes) {
             // id will be generated
 
         //rented date Id Foreign Key
-        rentitemId: {
+        rentItemId: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
 
 
-        renteddate: {
+        rentedDate: {
             type: DataTypes.DATEONLY,
             allowNull: true
         }
@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
     RentedDates.associate = function (models) {
         models.RentedDates.belongsTo(models.Item, {
             onDelete: "CASCADE",
-            foreignKey: 'rentitemId'
+            foreignKey: 'rentItemId'
         }
         );
     };

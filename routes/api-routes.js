@@ -14,16 +14,40 @@ module.exports = function(app) {
     });
   });
 
+
+
   //all items with certain category
+  // app.get("/api/category/:category", function(req, res) {
+  //   db.Category.findAll({
+  //     where: {
+  //       categoryname: req.params.category
+  //     }
+  //   }).then(function(result) {
+  //     res.json(result);
+  //   });
+  // });
+  var catNumber;
   app.get("/api/category/:category", function(req, res) {
-    db.Category.findAll({
+    db.Item.findAll({
       where: {
-        categoryname: req.params.category
+        itemCatId: req.params.category
       }
-    }).then(function(result) {
-      res.json(result);
-    });
+    })
+      .then(function(oh, blah) {
+        catNumber = oh[0].dataValues.id;
+      }).then(function(){
+        db.Item.findAll({
+          where: {
+            itemcatId: catNumber
+          }
+        })
+          .then(function(newresult) {
+            res.json(newresult);
+          });;
+      })
   });
+
+
 
   //all items by a certain user
   app.get("/api/user/:user", function(req, res) {
@@ -61,15 +85,21 @@ module.exports = function(app) {
   });
 
   // add a new item
-  app.post("/api/new", function(req, res) {
+  app.post("/api/newItem", function(req, res) {
     db.Item.create(req.body).then(function(result) {
+      res.json(result);
+    });
+  });
+
+  app.post("/api/newUser", function(req, res) {
+    db.User.create(req.body).then(function(result) {
       res.json(result);
     });
   });
 
   // // Add sequelize code to delete a book
   // app.post("/api/delete", function(req, res) {
-  //   Book.destroy({
+  //   db.Item.destroy({
   //     where: {
   //       id: req.body.id
   //     }
