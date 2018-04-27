@@ -9,17 +9,29 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+var Sequelize = require("sequelize");
+router.get("/", function(req, res){
+  db.Category.findAll({}).then(function(result){
+    var anotherObject = {
+      categories: result
+    }
+    res.render("index",anotherObject)
+  })
+})
+// router.get("/", function(req, res) {
+//   db.Item.findAll({}).then(function(results) {
 
-router.get("/", function(req, res) {
-  db.Item.findAll(function(data) {
-    var hbsObject = {
-      // key depends on what we use in handlebars
-      stuff: data
-    };
-    //first argument also depends on handlebars
-    res.render("index", hbsObject);
-  });
-});
+//     var hbsObject = {
+//       Item: results
+//     }
+//     res.render("index", hbsObject);
+//   });
+
+  
+// });
+
+
+
 
 // router.get("/:catId", function(req, res) {
 //   db.Item.findAll(function(data) {
