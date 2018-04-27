@@ -14,16 +14,20 @@ module.exports = function(app) {
     });
   });
 
+
+
   //all items with certain category
   app.get("/api/category/:category", function(req, res) {
-    db.Category.findAll({
+    db.Item.findAll({
       where: {
-        categoryname: req.params.category
+        itemCatId: req.params.category
       }
     }).then(function(result) {
       res.json(result);
     });
   });
+
+
 
   //all items by a certain user
   app.get("/api/user/:user", function(req, res) {

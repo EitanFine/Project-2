@@ -53,7 +53,7 @@ module.exports = function (sequelize, DataTypes) {
     Item.associate = function (models) {
         models.Item.belongsTo(models.Category, {
             onDelete: "CASCADE",
-            foreignKey: 'itemcatId'
+            foreignKey: 'itemCatId'
         }
         );
     };
@@ -61,13 +61,13 @@ module.exports = function (sequelize, DataTypes) {
     Item.associate = function (models) {
         models.Item.belongsTo(models.User, {
             onDelete: "CASCADE",
-            foreignKey: 'itemuserId'
+            foreignKey: 'itemUserId'
         }
         );
     };
 
     Item.associate = function (models) {
-        models.Item.hasMany(models.RentedDates, { foreignKey: 'rentitemId' });
+        models.Item.hasMany(models.RentedDates, { foreignKey: 'rentItemId' });
     };
 
     return Item;
