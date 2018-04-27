@@ -25,11 +25,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         // The creditcard info - dummy dat
-        creditcard: {
+        creditCard: {
             type: DataTypes.STRING,
             defaultValue: "dummy Cred Card Info"
         },
-        streetaddress: {
+        streetAddress: {
             type: DataTypes.STRING,
             allowNull: true
         },
