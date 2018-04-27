@@ -17,14 +17,34 @@ module.exports = function(app) {
 
 
   //all items with certain category
+  // app.get("/api/category/:category", function(req, res) {
+  //   db.Category.findAll({
+  //     where: {
+  //       categoryname: req.params.category
+  //     }
+  //   }).then(function(result) {
+  //     res.json(result);
+  //   });
+  // });
+  var catNumber;
   app.get("/api/category/:category", function(req, res) {
     db.Item.findAll({
       where: {
         itemCatId: req.params.category
       }
-    }).then(function(result) {
-      res.json(result);
-    });
+    })
+      .then(function(oh, blah) {
+        catNumber = oh[0].dataValues.id;
+      }).then(function(){
+        db.Item.findAll({
+          where: {
+            itemcatId: catNumber
+          }
+        })
+          .then(function(newresult) {
+            res.json(newresult);
+          });;
+      })
   });
 
 

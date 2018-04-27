@@ -30,7 +30,10 @@ app.use(express.static("public"));
 // =============================================================
 
 //un comment !!!! after db set up
-// require("./routes/api-routes.js")(app);
+//require("./routes/api-routes.js")(app);
+require("./routes/api-routes.js")(app);
+var routes = require("./controllers/stuff_controllers.js");
+app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
