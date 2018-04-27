@@ -1,5 +1,5 @@
-<h1>Create a new listing. {{this.id}}</h1>
-
+<h1>Create a new listing.</h1>
+{{this.id}}
 <form data-id="{{this.id}}" class="create-update-form" method="POST">
 
   <div class="form-group">
@@ -8,7 +8,7 @@
   </div>
   <div class="form-group">
     <label for="itemname">item: </label>
-    <textarea id="itemName" name="itemname" rows="8" cols="40">{{this.itemName}}</textarea>
+    <textarea id="itemName" name="itemname" rows="1" cols="40">{{this.itemName}}</textarea>
   </div>
   <div class="form-group">
     <label for="itemdescription">Description: </label>
@@ -16,7 +16,7 @@
   </div>
     <div class="form-group">
     <label for="itemprice">Price: </label>
-    <textarea id="price" name="itemprice" rows="8" cols="40">{{this.itemPrice}}</textarea>
+    <textarea id="price" name="itemprice" rows="1" cols="40">{{this.itemPrice}}</textarea>
   </div>
 
   <button type="submit">Post Listing</button>
