@@ -2,7 +2,7 @@
     <div class="row"></div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    {{!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             {{#each categories}}
             <li class="dropdown">
@@ -14,7 +14,34 @@
                 
             </li>
             {{/each}}
+        </ul> --}}
+
+        <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Categories</b>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              {{#each categories}}
+              <li><a href="#" >
+              {{this.categoryName}}
+
+              </a></li>
+              {{/each}}
+            </ul>
+          </li>
+          <li>
+            <a href="#"><b>How It Works</b></a>
+          </li>
+          <li>
+            <a href="#"><b>About</b></a>
+          </li>
+          <li>
+            <a href="/newlisting"><button type="button" class="btn btn-default navbar-btn" >Post Your Item</button></a>
+          </li>
         </ul>
+      </div>
         <form class="navbar-form navbar-left">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Enter Zip Code">
@@ -49,7 +76,7 @@
                                     <div class="form-group">
                                         <textarea class="form-control input-lg" type="text" name="this.inuse" value="1" rows="3"> </textarea>
                                     </div>
-                                    <button class="btn btn-default btn-lg" type="submit">Rent Iteml</button>
+                                    <button class="btn btn-default btn-lg" type="submit">Rent Item</button>
                                 </form>
                             </p>
                         </div>
