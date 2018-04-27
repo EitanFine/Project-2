@@ -25,8 +25,11 @@ router.get("/", function (req, res) {
       db.Item.findAll({}).then(function (results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
+
           const element = results[i];
-          element.itemImage = new Buffer(element.itemImage).toString('base64');
+          if (element.itemImage !== null) {
+            element.itemImage = new Buffer(element.itemImage).toString('base64');
+          }
         }
         anotherObject.Item = results;
         res.render("index", anotherObject);
