@@ -37,8 +37,20 @@ router.get("/", function (req, res) {
     );
 });
 
-router.get("/newlisting", function (req, res) {
-  res.render("newListing");
+var hbsObject;
+router.get("/newlisting", function(req, res) {
+  db.Category.findAll({})
+    .then(function(result) {
+      hbsObject = {
+        categories: result
+      };
+    })
+    .then(
+      db.User.findAll({}).then(function(results) {
+        hbsObject.users = results;
+        res.render("newListing", hbsObject);
+      })
+    );
 });
 
 router.post("/newlisting", function (req, res) {
