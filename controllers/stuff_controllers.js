@@ -9,17 +9,18 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+var Sequelize = require("sequelize");
 
 router.get("/", function(req, res) {
-  db.Item.findAll(function(data) {
+  db.Item.findAll({}).then(function(results) {
+
     var hbsObject = {
-      // key depends on what we use in handlebars
-      stuff: data
-    };
-    //first argument also depends on handlebars
+      Item: results
+    }
     res.render("index", hbsObject);
   });
 });
+
 
 // router.get("/:catId", function(req, res) {
 //   db.Item.findAll(function(data) {
