@@ -1,12 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDFZ9G287AUVSu2K6wxbobUr-6Vi9e1mkM"></script>
+    <title>Document</title>
+    <style>
+       /* 
+  =====================================
+  CSS for <iframe> embedded Google Map
+  ===================================== 
+*/
+.mapWrapper {
+    position: relative;
+    /* 
+    Do math with the height of your iframe divided by the width, then converted to percent
+    In this example the height is 400 and the width is 600
+    400 / 600 = .66666667 
+    which is 66.6666667% */
+    padding-bottom: 66.6666667%; 
+    height: 0;
+}
+.mapWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+    </style>
 </head>
-<body>
-    <h1>MORE INFORMATION PAGE</h1>
+
+<body >
+    <div class="jumbotron" style="height: 170px">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="font-size: 42px;" class="navbar-brand" href="test.html">RENT MY STUFF</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <b>Categories</b>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Action</a>
+                            </li>
+                            <li>
+                                <a href="#">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#">Something else here</a>
+                            </li>
+                            <li>
+                                <a href="#">Separated link</a>
+                            </li>
+                            <li>
+                                <a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <b>How It Works</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <b>About</b>
+                        </a>
+                    </li>
+                    <li>
+                        <button type="button" class="btn btn-default navbar-btn">Post Your Item</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lawn Mower</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <h3>Lawn Mower</h3>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xs-4">
+                        <div class="thumbnail">
+                            <img src="https://domodel.net/wp-content/uploads/2014/04/gazonokosilka.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <h4>DESCRIPTION</h4>
+                        <p>Model # HRS216K4PDA-616875 21". Push mower with side discharge chute. Zone Start operator remains
+                            behind steering handle at all times Easy Start / Compression release</p>
+                        <br>
+                        <h4>Price: $33 Per Day, $132 Per Week</h4>
+                        <br>
+                        <h4>Address: 300 Atrium Dr, Franklin, NJ, 08873 </h4>
+                        <br>
+                        <h4>Contact: mail4alex@gmail.com Alex Baranov. </h4>
+                        <br>
+                        <a href="#">
+                            <button type="button" class="btn btn-primary dropdown-toggle">Rent It</button>
+                        </a>
+
+                    </div>
+
+                    <div class="col-md-4 col-xs-4">
+
+                        <!-- <div id="map"></div> -->
+                        <div class="mapWrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3023.9704865667854!2d-74.0118683!3d40.7186662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1e0db46837%3A0x97328f4c4e77998f!2s199+Chambers+St%2C+New+York%2C+NY+10007!5e0!3m2!1sen!2sus!4v1414997345912" width="600" height="400" frameborder="0" style="border:0"></iframe>
+                        </div> <!-- end .mapWrapper-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
