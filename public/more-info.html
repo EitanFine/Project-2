@@ -17,33 +17,103 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDFZ9G287AUVSu2K6wxbobUr-6Vi9e1mkM"></script>
     <title>Document</title>
-    <style>
-       /* 
-  =====================================
-  CSS for <iframe> embedded Google Map
-  ===================================== 
+<script>
+
+
+   var ApiKey_googleMaps = "AIzaSyDSMDeXXQxaeLJ4ZGXuwSKAM3NHBP4ckTc";
+
+/*
+ cutting down a test script i had
 */
-.mapWrapper {
-    position: relative;
-    /* 
-    Do math with the height of your iframe divided by the width, then converted to percent
-    In this example the height is 400 and the width is 600
-    400 / 600 = .66666667 
-    which is 66.6666667% */
-    padding-bottom: 66.6666667%; 
-    height: 0;
+
+ 
+
+//geocode address
+var my_address = "39 wallis ave 07306";
+var my_address = "300 Atrium Dr, Franklin, NJ, 08873";
+my_address = my_address.replace(/\s/g, '+');
+var src = "https://maps.googleapis.com/maps/api/geocode/json?address=" + my_address + "&key=" + ApiKey_googleMaps;
+
+
+
+
+function g_geoCode( callback) {
+    //need to make call from annie tmdb to get ishowtime movieid
+    console.log("top of g_geocode")
+    jQuery.ajax({
+        url: src,
+        type: "GET",
+    })
+        .done(function (data, textStatus, jqXHR) {
+            console.log("HTTP Request Succeeded: " + jqXHR.status);
+            console.log(data);
+			callback(data.results[0].geometry.location );
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("HTTP Request Failed");
+            console.log(errorThrown);
+            console.log(jqXHR);
+        })
+        .always(function () {
+            /* ... */
+            console.log('g_geoCode always');
+        });
+    console.log("bottom of g_geocode")
+};
+
+
+
+  function ourMap( geoAddObj) { 
+		console.log("ourMap");
+		console.log(geoAddObj);
+		  //---------------------------------------------------------
+		  src = "https://maps.googleapis.com/maps/api/js?key=" + ApiKey_googleMaps + "&callback=initMap";
+            var options = {
+                zoom: 16,
+                center:  geoAddObj  //{ lat: Latitude, lng: Longitude }
+            }
+            var map = new google.maps.Map(document.getElementById('map'), options);
+
+            var marker2 = new google.maps.Marker({
+                position:   geoAddObj ,//data.results[0].geometry.location ,  //{ lat: Latitude, lng: Longitude },
+                map: map
+            });
+	
 }
-.mapWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+
+
+
+$(document).ready(function () {
+    console.log("in Doc ready");    
+       g_geoCode( ourMap);
+    
+
+}); 
+</script>
+
+    <style>
+       /* .map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-responsive{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+} */
+#map{
+    /* height: 350px; */
     width: 100%;
-    height: 100%;
+    
 }
     </style>
 </head>
 
-<body >
+<body>
     <div class="jumbotron" style="height: 170px">
         <div class="container">
             <div class="navbar-header">
@@ -140,17 +210,23 @@
                     </div>
 
                     <div class="col-md-4 col-xs-4">
+                            <div class=" well well-sm">
+                        
+                                            <div id="map" style="height: 370px;"></div>
+                    
+                        </div>
 
-                        <!-- <div id="map"></div> -->
-                        <div class="mapWrapper">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3023.9704865667854!2d-74.0118683!3d40.7186662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a1e0db46837%3A0x97328f4c4e77998f!2s199+Chambers+St%2C+New+York%2C+NY+10007!5e0!3m2!1sen!2sus!4v1414997345912" width="600" height="400" frameborder="0" style="border:0"></iframe>
-                        </div> <!-- end .mapWrapper-->
+                        
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <!-- <script src="assets/javascript/googlemapapi.js"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSMDeXXQxaeLJ4ZGXuwSKAM3NHBP4ckTc"> </script>
 </body>
 
 </html>

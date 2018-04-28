@@ -53,10 +53,35 @@ router.get("/newlisting", function(req, res) {
     );
 });
 
-router.post("/newlisting", function (req, res) {
+router.get("/newlisting", function (req, res) {
   db.Item.create(req.body).then(function (result) {
     res.redirect("/");
   });
+});
+
+var infoObj;
+router.get("/iteminfo", function (req, res) {
+  // need to wrap the binary image
+  db.User.findAll({})
+    .then(function (result) {
+      infoObj = {
+        users: result
+      };
+    })
+    .then(
+      db.Item.findAll({}).then(function (results) {
+        for (let i = 0; i < results.length; i++) {
+          //convert the binary image into something handlebars image can understand
+
+          const element = results[i];
+          if (element.itemImage !== null) {
+            element.itemImage = new Buffer(element.itemImage).toString('base64');
+          }
+        }
+        infoObj.Item = results;
+        res.render("itemInfo", infoObj);
+      })
+    );
 });
 
 // router.get("/:catId", function(req, res) {
