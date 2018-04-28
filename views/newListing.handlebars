@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -96,7 +94,6 @@
       font-weight: bold;
     }
   </style>
-
 </head>
 
 <body>
@@ -106,7 +103,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">CREATE NEW LISTING</div>
         <div class="panel-body">
-          <form method="post" action="" class="create-update-form "role="login">
+          <form method="post" action="" class="create-update-form " role="login">
 
             {{!-- this whole block is for the drop down for categories and it saves the category ID for the new item --}}
             <div class="form-group">
@@ -121,30 +118,30 @@
             </div>
 
             {{!-- ---------------------------------------------- --}} {{!-- this whole block is for the drop down for users and it saves
-  the user ID for the new item--}}
-  <div class="form-group">
-    <label for="auth">User: </label>
-    <div class="input-group mb-3">
-      <select class="custom-select" name="itemUserId">
-        {{#each users}}
-        <option value="{{this.id}}">{{this.name}}</option>
-        {{/each}}
-      </select>
-    </div>
-  </div>
+            the user ID for the new item--}}
+            <div class="form-group">
+              <label for="auth">User: </label>
+              <div class="input-group mb-3">
+                <select class="custom-select" name="itemUserId">
+                  {{#each users}}
+                  <option value="{{this.id}}">{{this.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
             <div class="form-group">
               <div class="pull-right">
                 <a href="#">Sign up now</a>
               </div>
-              <label for="itemName">itemName</label>
-              <input type="textarea" name="itemName" id="name" placeholder="Rocket" required class="form-control input-lg" />
+              <label for="itemName">Item Name</label>
+              <input type="textarea" name="itemName" id="name" placeholder="List item to rent" required class="form-control input-lg" />
             </div>
 
             <div class="form-group">
               <div class="pull-right">
               </div>
               <label for="itemDescription">Description</label>
-              <input type="textarea" name="itemDescription" id="description" required class="form-control input-lg" />
+              <input type="textarea" name="itemDescription" id="description" placeholder="Add a brief description about your item"  required class="form-control input-lg" />
             </div>
             <div class="form-group">
               <div class="pull-right">
@@ -161,10 +158,8 @@
     </section>
   </section>
 
+
+
 </body>
 
 </html>
-
-
-
-
