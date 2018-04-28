@@ -2,7 +2,10 @@
   "development": {
     "username": "root",
     "password": "root",
-    "port": 8889,
+<<<<<<< HEAD
+=======
+    "port": 3306,
+>>>>>>> 814388c426f753b96e31b67cd9819e5ee2ed7253
     "database": "rental_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

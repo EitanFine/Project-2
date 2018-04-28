@@ -3,6 +3,12 @@
 use rental_db;
 
 
+insert into users (  name , email , password , streetaddress , city , state , zipcode )
+values ( "Alexs" , "alex1111@yahoooo.com" , "password1" , "127 Nathan Drive" , "North Brunswick" , "NJ", "08902" ),
+( "John Palumbo" , "john11@yahoooo.com" , "password1" , "54 Stella Drive" , "Bridgewater" , "NJ", "08807" );
+
+
+
 
 insert into users (  name , email , password , streetaddress , city , state , zipcode )
 values ( "Al Alberts" , "al1@yahoooo.com" , "password1" , "110 Main St" , "New Brunswick" , "NJ", "11111" ),

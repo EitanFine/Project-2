@@ -10,30 +10,52 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 var Sequelize = require("sequelize");
+//var btoa = require("btoa-atob");
 
 var anotherObject;
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
+  // need to wrap the binary image
   db.Category.findAll({})
-    .then(function(result) {
+    .then(function (result) {
       anotherObject = {
         categories: result
       };
     })
     .then(
-      db.Item.findAll({}).then(function(results) {
+      db.Item.findAll({}).then(function (results) {
+        for (let i = 0; i < results.length; i++) {
+          //convert the binary image into something handlebars image can understand
+
+          const element = results[i];
+          if (element.itemImage !== null) {
+            element.itemImage = new Buffer(element.itemImage).toString('base64');
+          }
+        }
         anotherObject.Item = results;
         res.render("index", anotherObject);
       })
     );
 });
 
+var hbsObject;
 router.get("/newlisting", function(req, res) {
-  res.render("newListing");
+  db.Category.findAll({})
+    .then(function(result) {
+      hbsObject = {
+        categories: result
+      };
+    })
+    .then(
+      db.User.findAll({}).then(function(results) {
+        hbsObject.users = results;
+        res.render("newListing", hbsObject);
+      })
+    );
 });
 
-router.post("/newlisting", function(req, res) {
-  db.Item.create(req.body).then(function(result) {
-    res.redirect("/");  
+router.post("/newlisting", function (req, res) {
+  db.Item.create(req.body).then(function (result) {
+    res.redirect("/");
   });
 });
 
