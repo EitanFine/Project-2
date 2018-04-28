@@ -72,7 +72,7 @@ function g_geoCode( callback) {
                 zoom: 16,
                 center:  geoAddObj  //{ lat: Latitude, lng: Longitude }
             }
-            var map = new google.maps.Map(document.getElementById('myMap5'), options);
+            var map = new google.maps.Map(document.getElementById('map'), options);
 
             var marker2 = new google.maps.Marker({
                 position:   geoAddObj ,//data.results[0].geometry.location ,  //{ lat: Latitude, lng: Longitude },
@@ -92,10 +92,24 @@ $(document).ready(function () {
 </script>
 
     <style>
-        #myMap5{
-            height: 100%;
-            width: 100%;
-        }
+       /* .map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.map-responsive{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+} */
+#map{
+    /* height: 350px; */
+    width: 100%;
+    
+}
     </style>
 </head>
 
@@ -196,8 +210,10 @@ $(document).ready(function () {
                     </div>
 
                     <div class="col-md-4 col-xs-4">
-                        <div style="width: 450; height: 350;">
-                                <div id="myMap5">My Map 5</div>
+                            <div class=" well well-sm">
+                        
+                                            <div id="map" style="height: 370px;"></div>
+                    
                         </div>
 
                         
