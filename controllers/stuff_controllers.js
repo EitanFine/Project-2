@@ -53,7 +53,7 @@ router.get("/newlisting", function (req, res) {
     );
 });
 
-router.get("/newlisting", function (req, res) {
+router.post("/newlisting", function (req, res) {
   db.Item.create(req.body).then(function (result) {
     res.redirect("/");
   });

@@ -1,23 +1,57 @@
 <h1>Create a new listing.</h1>
-{{this.id}}
-<form data-id="{{this.id}}" class="create-update-form" method="POST">
 
+<form  class="create-update-form" method="POST">
+
+
+{{!-- this whole block is for the drop down for categories and it saves the category ID for the new item --}}
   <div class="form-group">
     <label for="auth">Category: </label>
-    <input type="text" id="category" name="category" value="{{this.itemCatId}}">
+    <div class="input-group mb-3">
+      <select class="custom-select" name="itemCatId">
+        {{#each categories}}
+        <option value="{{this.id}}">{{this.categoryName}}</option>
+        {{/each}}
+      </select>
+    </div>
   </div>
+{{!-- ---------------------------------------------- --}}
+
+
+{{!-- this whole block is for the drop down for users and it saves the user ID for the new item--}}
   <div class="form-group">
-    <label for="itemname">item: </label>
-    <textarea id="itemName" name="itemname" rows="1" cols="40">{{this.itemName}}</textarea>
+    <label for="auth">User: </label>
+    <div class="input-group mb-3">
+      <select class="custom-select" name="itemUserId">
+        {{#each users}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
   </div>
+  {{!-- -------------------------------------}}
+
+
+{{!-- 
+only things where the naming matters for everything else is the 'name' attribute. id and label dont matter 
+
+i guess textareas get like a row and col attribute to make it the size you want but i deleted those for now
+
+honestly item name and price can probably just be a regular input insteaed of a textarea
+
+and then obviously making it pretty
+--}}
   <div class="form-group">
-    <label for="itemdescription">Description: </label>
-    <textarea id="descr" name="itemdescription" rows="8" cols="40">{{this.itemDescription}}</textarea>
+    <label for="reallydoesntmatter">item: </label>
+    <textarea id="doesntmatter" name="itemName"></textarea>
   </div>
-    <div class="form-group">
+ 
+  <div class="form-group">
     <label for="itemprice">Price: </label>
-    <textarea id="price" name="itemprice" rows="1" cols="40">{{this.itemPrice}}</textarea>
+    <textarea id="price" name="itemPrice" ></textarea>
   </div>
+
+{{!-- to do: add an input for description, i guess image, once johns done figuring that out, 
+add a REQUIRED (i forget how to do it) on all the inputs except for description, unless you think that should be requierd too. --}}
 
   <button type="submit">Post Listing</button>
 </form>
