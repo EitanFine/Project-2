@@ -74,18 +74,19 @@
     </div>
     <!-- /.navbar-collapse -->
     <hr>
-    <div class="panel panel-primary floatleft">
+    <div class="panel panel-primary  ">
         <div class="panel-heading">
             {{!--
             <h3 class="panel-title">{{this.categoryName}}</h3> --}}
         </div>
-        <div class="panel-body floatleft">
-            <div class="row  floatleft">
+        <div class="panel-body ">
+            <div class="row  ">
                 {{#each Item}}
-                <div class="col-sm-4 col-md-3 floatleft">
-                    <div class="thumbnail">
+                <div class="col-sm-4 col-md-3">
+                    <div class="thumbnail   ">
                         {{!-- this is needed because of image binary --}}
-                        <img style="height: 450px; width: 100%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
+                        {{!-- <img style="height: 450px; width: 100%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> --}}
+                        <img style="height: 225px; width: 90%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
                         <div class="caption">
                             <h3>{{this.itemName}}</h3>
                             <p>{{this.itemDescription}}</p>
