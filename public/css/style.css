@@ -9,3 +9,14 @@
     width: 100%;
 }
 
+
+.floatleft{
+   border: 2px salmon solid; 
+   /* display: flex; */
+   /* flex-wrap: wrap;  */
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 50px);
+  }
+

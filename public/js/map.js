@@ -42,7 +42,7 @@ function g_geoCode(address, callback) {
 
 
 function ourMap(geoAddObj) {
-    console.log("\n\n\n\nourMap\n\n\n\n\n");
+    console.log("\n\nourMap\n\n");
     console.log(geoAddObj);
     //---------------------------------------------------------
     src = "https://maps.googleapis.com/maps/api/js?key=" + ApiKey_googleMaps + "&callback=initMap";
@@ -62,8 +62,7 @@ function ourMap(geoAddObj) {
 
 
 $(document).ready(function () {
-    console.log("\n\n\n\n\nin Doc ready\n\n\n\n");
-    //var schoolAddr = "300 Atrium Dr, Franklin, NJ, 08873";
-    //g_geoCode(schoolAddr, ourMap);
-    getUserMap();
+    console.log("\n\nin Doc ready\n\n");
+    inititeminfo();
+    //getUserMap();
 }); 
