@@ -33,21 +33,10 @@ module.exports = function(app) {
         itemCatId: req.params.category
       }
     })
-      .then(function(oh, blah) {
-        catNumber = oh[0].dataValues.id;
-      }).then(function(){
-        db.Item.findAll({
-          where: {
-            itemcatId: catNumber
-          }
-        })
-          .then(function(newresult) {
-            res.json(newresult);
-          });;
-      })
+    .then(function(result) {
+      res.json(result)
+    })
   });
-
-
 
   //all items by a certain user
   app.get("/api/user/:user", function(req, res) {

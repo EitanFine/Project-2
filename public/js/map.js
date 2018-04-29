@@ -4,19 +4,19 @@ var ApiKey_googleMaps = "AIzaSyDSMDeXXQxaeLJ4ZGXuwSKAM3NHBP4ckTc";
  cutting down a test script i had
 */
 
- 
+
 
 //geocode address
 var my_address = "39 wallis ave 07306";
-var my_address = "300 Atrium Dr, Franklin, NJ, 08873";
-my_address = my_address.replace(/\s/g, '+');
-var src = "https://maps.googleapis.com/maps/api/geocode/json?address=" + my_address + "&key=" + ApiKey_googleMaps;
 
 
 
 
-function g_geoCode( callback) {
+
+function g_geoCode(address, callback) {
     //need to make call from annie tmdb to get ishowtime movieid
+    my_address = address.replace(/\s/g, '+');
+    var src = "https://maps.googleapis.com/maps/api/geocode/json?address=" + my_address + "&key=" + ApiKey_googleMaps;
     console.log("top of g_geocode")
     jQuery.ajax({
         url: src,
@@ -25,7 +25,7 @@ function g_geoCode( callback) {
         .done(function (data, textStatus, jqXHR) {
             console.log("HTTP Request Succeeded: " + jqXHR.status);
             console.log(data);
-			callback(data.results[0].geometry.location );
+            callback(data.results[0].geometry.location);
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             console.log("HTTP Request Failed");
@@ -41,29 +41,28 @@ function g_geoCode( callback) {
 
 
 
-  function ourMap( geoAddObj) { 
-		console.log("ourMap");
-		console.log(geoAddObj);
-		  //---------------------------------------------------------
-		  src = "https://maps.googleapis.com/maps/api/js?key=" + ApiKey_googleMaps + "&callback=initMap";
-            var options = {
-                zoom: 16,
-                center:  geoAddObj  //{ lat: Latitude, lng: Longitude }
-            }
-            var map = new google.maps.Map(document.getElementById('map'), options);
+function ourMap(geoAddObj) {
+    console.log("\n\nourMap\n\n");
+    console.log(geoAddObj);
+    //---------------------------------------------------------
+    src = "https://maps.googleapis.com/maps/api/js?key=" + ApiKey_googleMaps + "&callback=initMap";
+    var options = {
+        zoom: 16,
+        center: geoAddObj  //{ lat: Latitude, lng: Longitude }
+    }
+    var map = new google.maps.Map(document.getElementById('map'), options);
 
-            var marker2 = new google.maps.Marker({
-                position:   geoAddObj ,//data.results[0].geometry.location ,  //{ lat: Latitude, lng: Longitude },
-                map: map
-            });
-	
+    var marker2 = new google.maps.Marker({
+        position: geoAddObj,//data.results[0].geometry.location ,  //{ lat: Latitude, lng: Longitude },
+        map: map
+    });
+
 }
 
 
 
 $(document).ready(function () {
-    console.log("in Doc ready");    
-       g_geoCode( ourMap);
-    
-
+    console.log("\n\nin Doc ready\n\n");
+    inititeminfo();
+    //getUserMap();
 }); 
