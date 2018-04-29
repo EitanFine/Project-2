@@ -84,14 +84,17 @@
                 {{#each Item}}
                 <div class="col-sm-4 col-md-3">
                     <div class="thumbnail   ">
-                        {{!-- this is needed because of image binary --}}
-                        {{!-- <img style="height: 450px; width: 100%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> --}}
+                        {{!-- this is needed because of image binary --}} {{!--
+                        <img style="height: 450px; width: 100%;"
+                            src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> --}}
                         <img style="height: 225px; width: 90%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
                         <div class="caption">
                             <h3>{{this.itemName}}</h3>
                             <p>{{this.itemDescription}}</p>
                             <p>Per Day: {{this.itemPrice}}</p>
-
+                            {{!-- {{#each User}} --}}
+                            <p>Zip Code: {{{this.zipcode}}}</p>
+                            {{!-- {{/each}} --}}
                             <a href="/iteminfo1/{{this.id}}" class="btn btn-primary" role="button">View Listing</a>
 
 
