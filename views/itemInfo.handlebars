@@ -1,58 +1,98 @@
 
-<br><br><br>
+<link rel="stylesheet" href="/WidgetCal/jqwidgets/styles/jqx.base.css" type="text/css" /> {{!--
+<script type="text/javascript" src="/WidgetCal/scripts/jquery-1.12.4.min.js"></script> --}}
+<script type="text/javascript" src="/WidgetCal/scripts/demos.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxdatetimeinput.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcalendar.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxtooltip.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/globalization/globalize.js"></script>
+
 <div class="container-fluid">
-    <div class="col-md-12 col-xs-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{this.itemName}}</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4 col-xs-4">
-                        <div class="thumbnail">
-                            <img id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> {{!--
-                            <img src="https://domodel.net/wp-content/uploads/2014/04/gazonokosilka.jpg" alt=""> --}}
-                        </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{this.itemName}}</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-4 col-xs-4">
+
+                    <div class="thumbnail">
+                        <img id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
                     </div>
-                    <ul>
-                        <div class="col-md-4 col-xs-4">
-                            <h4>DESCRIPTION</h4>
-                            <li>
-                                <p>{{this.itemDescription}}</p>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>{{this.itemName}}</h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Price: ${{this.itemPrice}}</h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Address: {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}</h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Contact:{{this.email}}. </h4>
-                            </li>
-                            <br>
-                            <li>
-                                <h4>Rented Dates: {{this.rentedDates}}</h4>
-                            </li>
-                            <a href="#">
-                                <button type="button" class="btn btn-primary dropdown-toggle">Rent It</button>
-                            </a>
-                        </div>
-                    </ul>
-                    <div class="col-md-4 col-xs-4">
-                        <div class=" well well-sm">
-                            <div id="map" style="height: 370px;"></div>
-                        </div>
+                </div>
+
+                <div class="col-md-4 col-xs-4">
+                    <h4>DESCRIPTION</h4>
+                    <p>{{this.itemDescription}}</p>
+                    <br>
+                    <h4>{{this.itemName}}</h4>
+                    <br>
+                    <h4>Price: ${{this.itemPrice}}</h4>
+                    <br>
+                    <h4 id="address">Address:
+                        <span id="gAddress"> {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}</span>
+                    </h4>
+                    <br>
+                    <h4>Contact:{{this.email}}. </h4>
+                    <br>
+                    <h4>Rented Dates:
+                        <span id="rented"> {{this.rentedDates}}</span>
+                    </h4>
+                    <a href="#">
+                        <button type="button" class="btn btn-primary dropdown-toggle">Rent It</button>
+                    </a>
+
+                </div>
+
+                <div class="col-md-4 col-xs-4">
+
+                    <div class=" well well-sm">
+                        <div id="map" style="height: 370px;"></div>
                     </div>
+                    <div id='calendar'>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+<script> 
+    console.log("top of script before anything ");
+    function inititeminfo() {
+        getUserMap();
+        calendar();
+    };
+
+    var getUserMap = function () {
+        console.log(" in script");
+        var userAdd = $('#gAddress').text();
+        console.log(" \n\n in iteminfo before \n\n ", userAdd);
+        g_geoCode(userAdd, ourMap);
+        console.log(" in iteminfo afetr");
+    }
+
+    var calendar = function () {
+        //grab string from html that contains the dates,
+        // create an array - then convert to dates.
+        var restrictedDates = $('#rented').text().trim().split(',');
+        //convert into array of date, need to 
+        //add 24 hours-  too long of story why
+        for (let i = 0; i < restrictedDates.length; i++) {
+            restrictedDates[i] = new Date(restrictedDates[i]);
+            restrictedDates[i].setHours(25);
+        }
+
+        console.log(restrictedDates);
+        $("#calendar").jqxCalendar({
+            theme: 'energyblue',
+            width: '200px',
+            height: '200px',
+            restrictedDates: restrictedDates
+        });
+
+    }
+</script>
