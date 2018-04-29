@@ -2,55 +2,66 @@
     <div class="row"></div>
     <!-- Collect the nav links, forms, and other content for toggling -->
 
-    {{!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    {{!--
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             {{#each categories}}
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
                     <span class="caret"></span>
                 </a>
-                
-                    {{this.categoryName}}
-                
+
+                {{this.categoryName}}
+
             </li>
             {{/each}}
         </ul> --}}
 
         <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Categories</b>
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              {{#each categories}}
-              <li><a href="#" >
-              {{this.categoryName}}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <b>Categories</b>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {{#each categories}}
+                        <li>
+                            <a href="#">
+                                {{this.categoryName}}
 
-              </a></li>
-              {{/each}}
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                </li>
+                {{!--
+                <li>
+                    <select class="form-control" name="category" id="category">
+                        {{#each categories}}
+                        <option value={{this.id}}>{{this.categoryName}}</option>
+                        {{/each}}
+                    </select>
+                </li> --}}
+
+                <li>
+                    <a href="#">
+                        <b>How It Works</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <b>About</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="/newlisting">
+                        <button type="button" class="btn btn-default navbar-btn">Post Your Item</button>
+                    </a>
+                </li>
             </ul>
-
-          </li>
-          {{!-- <li>
- <select class="form-control" name="category" id="category">
-                       {{#each categories}}
-                       <option value={{this.id}}>{{this.categoryName}}</option>
-                       {{/each}}
-                   </select>
-          </li> --}}
-         
-          <li>
-            <a href="#"><b>How It Works</b></a>
-          </li>
-          <li>
-            <a href="#"><b>About</b></a>
-          </li>
-          <li>
-            <a href="/newlisting"><button type="button" class="btn btn-default navbar-btn" >Post Your Item</button></a>
-          </li>
-        </ul>
-      </div>
+        </div>
         <form class="navbar-form navbar-left">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Enter Zip Code">
@@ -63,26 +74,26 @@
     </div>
     <!-- /.navbar-collapse -->
     <hr>
-    <div class="panel panel-primary">
+    <div class="panel panel-primary floatleft">
         <div class="panel-heading">
             {{!--
             <h3 class="panel-title">{{this.categoryName}}</h3> --}}
         </div>
-        <div class="panel-body">
-            <div class="row">
+        <div class="panel-body floatleft">
+            <div class="row  floatleft">
                 {{#each Item}}
-                <div class="col-sm-4 col-md-3">
-                    <div class="thumbnail">         
-                        {{!-- this is needed because of image binary  --}}
+                <div class="col-sm-4 col-md-3 floatleft">
+                    <div class="thumbnail">
+                        {{!-- this is needed because of image binary --}}
                         <img style="height: 450px; width: 100%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
                         <div class="caption">
                             <h3>{{this.itemName}}</h3>
                             <p>{{this.itemDescription}}</p>
                             <p>Per Day: {{this.itemPrice}}</p>
-    
-                                <a href="/iteminfo1/{{this.id}}" class="btn btn-primary" role="button">View Listing</a>
-                               
-                            
+
+                            <a href="/iteminfo1/{{this.id}}" class="btn btn-primary" role="button">View Listing</a>
+
+
                         </div>
                     </div>
                 </div>
