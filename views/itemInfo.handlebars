@@ -1,3 +1,12 @@
+<link rel="stylesheet" href="/WidgetCal/jqwidgets/styles/jqx.base.css" type="text/css" /> {{!--
+<script type="text/javascript" src="/WidgetCal/scripts/jquery-1.12.4.min.js"></script> --}}
+<script type="text/javascript" src="/WidgetCal/scripts/demos.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxdatetimeinput.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcalendar.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxtooltip.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/globalization/globalize.js"></script>
+
 <div class="container-fluid">
 
     <div class="panel panel-primary">
@@ -10,8 +19,7 @@
                 <div class="col-md-4 col-xs-4">
 
                     <div class="thumbnail">
-                        <img id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> {{!--
-                        <img src="https://domodel.net/wp-content/uploads/2014/04/gazonokosilka.jpg" alt=""> --}}
+                        <img id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
                     </div>
                 </div>
 
@@ -29,7 +37,9 @@
                     <br>
                     <h4>Contact:{{this.email}}. </h4>
                     <br>
-                    <h4>Rented Dates: {{this.rentedDates}}</h4>
+                    <h4>Rented Dates:
+                        <span id="rented"> {{this.rentedDates}}</span>
+                    </h4>
                     <a href="#">
                         <button type="button" class="btn btn-primary dropdown-toggle">Rent It</button>
                     </a>
@@ -41,6 +51,8 @@
                     <div class=" well well-sm">
                         <div id="map" style="height: 370px;"></div>
                     </div>
+                    <div id='calendar'>
+                    </div>
 
                 </div>
             </div>
@@ -49,12 +61,37 @@
 </div>
 <script> 
     console.log("top of script before anything ");
+    function inititeminfo() {
+        getUserMap();
+        calendar();
+    };
+
     var getUserMap = function () {
         console.log(" in script");
         var userAdd = $('#gAddress').text();
-        //var userAdd = " 54 stella drive 08807";
         console.log(" \n\n in iteminfo before \n\n ", userAdd);
         g_geoCode(userAdd, ourMap);
         console.log(" in iteminfo afetr");
+    }
+
+    var calendar = function () {
+        //grab string from html that contains the dates,
+        // create an array - then convert to dates.
+        var restrictedDates = $('#rented').text().trim().split(',');
+        //convert into array of date, need to 
+        //add 24 hours-  too long of story why
+        for (let i = 0; i < restrictedDates.length; i++) {
+            restrictedDates[i] = new Date(restrictedDates[i]);
+            restrictedDates[i].setHours(25);
+        }
+
+        console.log(restrictedDates);
+        $("#calendar").jqxCalendar({
+            theme: 'energyblue',
+            width: '200px',
+            height: '200px',
+            restrictedDates: restrictedDates
+        });
+
     }
 </script>
