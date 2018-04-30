@@ -91,6 +91,7 @@ router.get("/iteminfo1/:id", function(req, res) {
         }
         console.log("RENTED DATES: ", dates);
         infoObj = {
+          itemId: result.id,
           itemDescription: result.itemDescription,
           itemPrice: result.itemPrice,
           itemName: result.itemName,
