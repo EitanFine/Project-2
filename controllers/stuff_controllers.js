@@ -172,7 +172,10 @@ router.get("/category/:category", function(req, res) {
     });
 });
 
-
+//FIND OUT STUFF ABOUT CATCH ALL
+router.get("/*", function(req,res){
+  res.render("index")
+})
 
 module.exports = router;
 //require this back in server.js
