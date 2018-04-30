@@ -88,6 +88,12 @@ router.post("/newlisting", function(req, res) {
   });
 });
 
+// router.post("/iteminfo1/:id", function(req, res) {
+//   db.RentedDates.create(req.body).then(function(result) {
+//     res.redirect("/");
+//   });
+// });
+
 var infoObj;
 router.get("/iteminfo1/:id", function(req, res) {
   // need to wrap the binary image
