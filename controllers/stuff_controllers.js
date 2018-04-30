@@ -144,11 +144,8 @@ router.post("/newlisting", function(req, res) {
   });
 });
 
-// router.post("/iteminfo1/:id", function(req, res) {
-//   db.RentedDates.create(req.body).then(function(result) {
-//     res.redirect("/");
-//   });
-// });
+ 
+// 04/30 jp.added imageURL
 
 var infoObj;
 router.get("/iteminfo1/:id", function(req, res) {
@@ -185,6 +182,7 @@ router.get("/iteminfo1/:id", function(req, res) {
           itemPrice: result.itemPrice,
           itemName: result.itemName,
           itemImage: result.itemImage,
+          itemURL: result.itemURL,
           name: resultU.name,
           email: resultU.email,
           streetAddress: resultU.streetAddress,
