@@ -17,12 +17,16 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+
 </head>
 
 <body>
-<div class="jumbotron" style="height: 170px">
+  <div class="jumbotron" style="height: 170px">
     <nav class="navbar navbar-default">
-    <!-- <div class="container"> -->
+      <!-- <div class="container"> -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
           aria-controls="navbar">
@@ -36,35 +40,41 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>Categories</b>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <b>Categories</b>
               <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {{#each categories}}
-                        <li>
-                            <a href='/category/{{this.categoryName}}'>
-                                {{this.categoryName}}
+            </a>
+            <ul class="dropdown-menu">
+              {{#each categories}}
+              <li>
+                <a href='/category/{{this.categoryName}}'>
+                  {{this.categoryName}}
 
-                            </a>
-                        </li>
-                        {{/each}}
-                    </ul>
+                </a>
+              </li>
+              {{/each}}
+            </ul>
 
-                </li>
+          </li>
 
           <li>
-            <a href="/howitworks"><b>How It Works</b></a>
+            <a href="/howitworks">
+              <b>How It Works</b>
+            </a>
           </li>
           <li>
-            <a href="/about"><b>About</b></a>
+            <a href="/about">
+              <b>About</b>
+            </a>
           </li>
           <li>
             <a href="/newlisting">
-            <button type="button" class="btn btn-default navbar-btn">Post Your Item</button> </a>
+              <button type="button" class="btn btn-default navbar-btn">Post Your Item</button>
+            </a>
           </li>
         </ul>
       </div>
-    <!-- </div> -->
+      <!-- </div> -->
   </div>
 
 

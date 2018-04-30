@@ -179,10 +179,24 @@ router.get("/category/:category", function(req, res) {
     });
 });
 
-//FIND OUT STUFF ABOUT CATCH ALL
-router.get("/*", function(req, res) {
-  res.render("index");
+router.get("/about", function(req, res) {
+  db.Category.findAll({})
+  .then(function(result) {
+    anotherObject = {
+      categories: result
+    };
+    res.render("about", anotherObject);
+  })
 });
+
+router.get("/howitworks", function(req, res) {
+  db.Category.findAll({})
+  .then(function(result) {
+    anotherObject = {
+      categories: result
+    };
+    res.render("howitworks", anotherObject);
+  })});
 
 module.exports = router;
 //require this back in server.js
