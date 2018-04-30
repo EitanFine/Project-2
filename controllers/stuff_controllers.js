@@ -7,10 +7,26 @@
 //i dont get it are we just using this instead of html-routes
 
 var express = require("express");
+var session = require("express-session");
+var passport = require("../config/passport")
+
 var router = express.Router();
 var db = require("../models");
 var Sequelize = require("sequelize");
 //var btoa = require("btoa-atob");
+
+// router.get("/members", function(req, res){
+//   res.render("members")
+// });
+
+router.get("/signUp", function(req, res){
+  res.render("signUp")
+});
+
+router.get("/login", function(req, res){
+  res.render("logIn")
+})
+;
 
 var anotherObject;
 router.get("/", function(req, res) {
@@ -33,11 +49,22 @@ router.get("/", function(req, res) {
             );
           }
         }
+
         anotherObject.Item = results;
+        anotherObject.user = req.user ? req.user.id : null;
+
+        console.log("ANOTHER OBJECT: ", anotherObject);
+        console.log("USER: ", )
+
         res.render("index", anotherObject);
       })
     );
 });
+
+
+
+
+
 
 var hbsObject;
 router.get("/newlisting", function(req, res) {
@@ -176,9 +203,11 @@ router.get("/category/:category", function(req, res) {
 
           });
 
+
         });
     });
 });
+
 
 router.get("/about", function(req, res) {
   db.Category.findAll({})
@@ -198,6 +227,10 @@ router.get("/howitworks", function(req, res) {
     };
     res.render("howitworks", anotherObject);
   })});
+
+
+router.use(passport.initialize());
+router.use(passport.session());
 
 module.exports = router;
 //require this back in server.js

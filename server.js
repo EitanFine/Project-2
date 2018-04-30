@@ -6,6 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var session = require("express-session");
+var passport = require("./config/passport")
 
 // Sets up the Express App
 // =============================================================
@@ -15,6 +17,9 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
+app.use(session(({ secret: "keyboard cat", resave: true, saveUninitialized: true })))
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Sets up the Express app to handle data parsing
 
@@ -38,6 +43,8 @@ app.set("view engine", "handlebars");
 //require("./routes/api-routes.js")(app);
 require("./routes/api-routes.js")(app);
 var routes = require("./controllers/stuff_controllers.js");
+routes.use(passport.initialize());
+routes.use(passport.session());
 app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
