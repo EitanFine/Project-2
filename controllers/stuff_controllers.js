@@ -43,7 +43,7 @@ router.get("/signUp", function(req, res){
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
 
-        console.log("ANOTHER OBJECT: ", anotherObject);
+        //console.log("ANOTHER OBJECT: ", anotherObject);
         console.log("USER: ", )
 
         res.render("signUp", anotherObject);
@@ -76,7 +76,7 @@ db.Category.findAll({})
     anotherObject.Item = results;
     anotherObject.user = req.user ? req.user.id : null;
 
-    console.log("ANOTHER OBJECT: ", anotherObject);
+    //console.log("ANOTHER OBJECT: ", anotherObject);
     console.log("USER: ", )
 
     res.render("logIn", anotherObject);
@@ -109,7 +109,7 @@ router.get("/", function(req, res) {
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
 
-        console.log("ANOTHER OBJECT: ", anotherObject);
+        //console.log("ANOTHER OBJECT: ", anotherObject);
         console.log("USER: ", )
 
         res.render("index", anotherObject);
@@ -195,47 +195,8 @@ router.get("/iteminfo1/:id", function(req, res) {
         };
         res.render("itemInfo", infoObj);
       });
-    });
-
-    //   if (result.itemImage !== null) {
-    //     result.itemImage = new Buffer(result.itemImage).toString('base64');
-    //   }
-    //   /* <h4>Address: {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}</h4> */
-
-    //   infoObj = {
-    //     itemDescription: result.itemDescription,
-    //     itemPrice: result.itemPrice,
-    //     itemName: result.itemName,
-    //     itemImage: result.itemImage,
-    //     name: resultU.name,
-    //     email: resultU.email,
-    //     streetAddress: resultU.streetAddress,
-    //     city: resultU.city,
-    //     state: resultU.state,
-    //     zipcode: resultU.zipcode
-
-    //   };
-    //   res.render("itemInfo", infoObj);
-    // })
-  });
-
-  //   console.log(result.itemDescription);
-  //   var element = result[0];
-  // .done(function (result) {
-  //   if (result.itemImage !== null) {
-  //     result.itemImage = new Buffer(result.itemImage).toString('base64');
-  //   }
-  //   infoObj = {
-  //     itemDescription: result.itemDescription,
-  //     itemPrice: result.itemPrice,
-  //     itemName: result.itemName,
-  //     itemImage: result.itemImage
-
-  //   };
-  //   console.log("Before render: ", result.itemDescription);
-  //   res.render("itemInfo", infoObj);
-  //   console.log("After render: ", result.itemDescription);
-  // });
+    });   
+  });  
 });
 
 var catObj = {};

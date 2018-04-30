@@ -97,7 +97,7 @@
 </div>
 </div>
 <script> 
-    console.log("top of script before anything ");
+    //console.log("top of script before anything ");
     function inititeminfo() {
         getUserMap();
         calendar();
@@ -110,7 +110,7 @@
             // var viewTo = view.to;         
             rentDates.push(convertDate(date));
             //rentedDates.empty();
-            //rentedDates.text(rentDates);
+            rentedDates.text(rentDates);
 
            var rentedObj = {rentDates};
 
@@ -144,7 +144,7 @@
         var userAdd = $('#gAddress').text();
         console.log(" \n\n in iteminfo before \n\n ", userAdd);
         g_geoCode(userAdd, ourMap);
-        console.log(" in iteminfo afetr");
+        console.log(" in iteminfo after");
     }
 
     var calendar = function () {

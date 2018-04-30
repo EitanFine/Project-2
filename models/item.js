@@ -42,6 +42,11 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: 0.00,
             allowNull: true
         },
+        //item image url
+        itemURL: {
+            type: DataTypes.STRING(2000),
+            allowNull: true
+        },
         inUse: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
