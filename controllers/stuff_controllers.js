@@ -148,7 +148,6 @@ router.get("/iteminfo1/:id", function(req, res) {
   // });
 });
 
-
 var catObj = {};
 var catNumber;
 router.get("/category/:category", function(req, res) {
@@ -165,17 +164,25 @@ router.get("/category/:category", function(req, res) {
         where: {
           itemcatId: catNumber
         }
-      }).then(function(newresult) {
-        catObj.Item = newresult;
-        res.render("index", catObj);
-      });
+      })
+        .then(function(newresult) {
+          catObj.Item = newresult;
+        })
+        .then(function() {
+          db.Category.findAll({}).then(function(anotherresult) {
+            catObj.categories = anotherresult;
+            res.render("index", catObj);
+
+          });
+
+        });
     });
 });
 
 //FIND OUT STUFF ABOUT CATCH ALL
-router.get("/*", function(req,res){
-  res.render("index")
-})
+router.get("/*", function(req, res) {
+  res.render("index");
+});
 
 module.exports = router;
 //require this back in server.js
