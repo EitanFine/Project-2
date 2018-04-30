@@ -28,14 +28,22 @@ module.exports = function(app) {
   // });
   var catNumber;
   app.get("/api/category/:category", function(req, res) {
-    db.Item.findAll({
+    db.Category.findAll({
       where: {
-        itemCatId: req.params.category
+        categoryName: req.params.category
       }
-    })
-    .then(function(result) {
-      res.json(result)
-    })
+    }).then(function(result) {
+        catNumber = result[0].dataValues.id;
+      }).then(function(){
+        db.Item.findAll({
+          where: {
+            itemcatId: catNumber
+          }
+        })
+          .then(function(newresult) {
+            res.json(newresult);
+          });;
+      })
   });
 
   //all items by a certain user
