@@ -15,18 +15,6 @@ module.exports = function(app) {
     });
   });
 
-
-
-  //all items with certain category
-  // app.get("/api/category/:category", function(req, res) {
-  //   db.Category.findAll({
-  //     where: {
-  //       categoryname: req.params.category
-  //     }
-  //   }).then(function(result) {
-  //     res.json(result);
-  //   });
-  // });
   var catNumber;
   app.get("/api/category/:category", function(req, res) {
     db.Category.findAll({
@@ -147,13 +135,3 @@ module.exports = function(app) {
     }
   });
   };
-  // // Add sequelize code to delete a book
-  // app.post("/api/delete", function(req, res) {
-  //   db.Item.destroy({
-  //     where: {
-  //       id: req.body.id
-  //     }
-  //   }).then(function(result){
-  //     res.end();
-  //   });
-  // });

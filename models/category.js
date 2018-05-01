@@ -1,14 +1,6 @@
-
-
 module.exports = function (sequelize, DataTypes) {
     var Category = sequelize.define("Category", {
-        // categoryId: {
-        //     type: DataTypes.INTEGER,
-        //     primaryKey: true,
-        //     allowNull: false,
-        //     autoIncrement: true,
-        //     unique: true
-        // },
+       
         //Categories
         categoryName: {
             type: DataTypes.STRING,
@@ -16,10 +8,8 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-
     Category.associate = function (models) {
         models.Category.hasMany(models.Item, {foreignKey: 'itemCatId'});
     };
-
     return Category;
 };

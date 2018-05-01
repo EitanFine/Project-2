@@ -1,18 +1,17 @@
 <div id="pricing" class="container">
-    <h2>Latest Posts</h2>
+    <h2 style="color: #4484ce">Listings</h2>
   <div>
       {{#each Item}}
     <div class="col-sm-4 col-xs-12">
       <div class="panel panel text-center">
         <div>
-          <h4 >{{this.itemName}}</h4>
+          <h4 class="cut-text">{{this.itemName}}</h4>
         </div>
         <div class="panel-body">
-         <img style="height: 225px; width: 90%; border: 2px solid #F19F4D;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
+         <img style="height: 225px; width: 90%; border: 2px solid #F19F4D;" src="{{this.itemURL}}" alt="...">
         </div>
         <div class="panel-footer">
           <h3>${{this.itemPrice}}</h3>
-          {{!-- <p>{{this.itemDescription}}</p> --}}
           <h4>(PER DAY)</h4>
            <a href="/iteminfo1/{{this.id}}" ><button class="btn btn-lg">View Listing</button></a>
           

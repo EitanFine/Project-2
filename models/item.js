@@ -1,12 +1,8 @@
-
+//dependencies
 var Category = require('./category');
 var User = require('./user');
 
-
-
 //ITEM TABLE - 
-// need to import category , and user
-
 module.exports = function (sequelize, DataTypes) {
     var Item = sequelize.define("Item", {
 
@@ -42,6 +38,11 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: 0.00,
             allowNull: true
         },
+        //item image url
+       itemURL: {
+           type: DataTypes.STRING(2000),
+           allowNull: true
+       },
         inUse: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

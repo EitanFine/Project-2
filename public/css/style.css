@@ -2,6 +2,13 @@
 .fab {
     font-size: 40px;
 }
+.cut-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 160px;
+    height: 1.2em;
+    white-space: nowrap;
+   }
 
 .rounded-circle {
     border-radius: 50%;
@@ -147,7 +154,7 @@ h2 {
 h4 {
     font-size: 19px;
     line-height: 1.375em;
-    color: #303030;
+    color: #4484ce;
     font-weight: 400;
     /* margin-bottom: 30px; */
 }  
@@ -215,7 +222,7 @@ h4 {
     color: #4484ce;
 }
 .acha{
-    color: black;
+    background-color: #4484ce;
 }
 .panel-heading {
     color: #fff !important;
