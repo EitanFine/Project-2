@@ -1,24 +1,12 @@
-//require all the models
-//require whatetver is holding sequalize and express
-// in server.js, require the following:
-// var routes = require("./controllers/stuff_controllers.js");
-// applicationCache.use(routes);
-
-//i dont get it are we just using this instead of html-routes
-
+//dependencies
 var express = require("express");
 var session = require("express-session");
 var passport = require("../config/passport");
-
 var router = express.Router();
 var db = require("../models");
 var Sequelize = require("sequelize");
-//var btoa = require("btoa-atob");
 
-// router.get("/members", function(req, res){
-//   res.render("members")
-// });
-
+//sign up page
 router.get("/signUp", function(req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
@@ -39,18 +27,14 @@ router.get("/signUp", function(req, res) {
             );
           }
         }
-
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
-
-        console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ");
-
         res.render("signUp", anotherObject);
       })
     );
 });
 
+//login page
 router.get("/login", function(req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
@@ -63,7 +47,6 @@ router.get("/login", function(req, res) {
       db.Item.findAll({}).then(function(results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
-
           const element = results[i];
           if (element.itemImage !== null) {
             element.itemImage = new Buffer(element.itemImage).toString(
@@ -71,18 +54,14 @@ router.get("/login", function(req, res) {
             );
           }
         }
-
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
-
-        console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ");
-
         res.render("logIn", anotherObject);
       })
     );
 });
 
+//main page 
 var anotherObject;
 router.get("/", function(req, res) {
   // need to wrap the binary image
@@ -96,7 +75,6 @@ router.get("/", function(req, res) {
       db.Item.findAll({}).then(function(results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
-
           const element = results[i];
           if (element.itemImage !== null) {
             element.itemImage = new Buffer(element.itemImage).toString(
@@ -104,18 +82,14 @@ router.get("/", function(req, res) {
             );
           }
         }
-
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
-
-        // console.log("ANOTHER OBJECT: ", anotherObject);
-        // console.log("USER: ", )
-
         res.render("index", anotherObject);
       })
     );
 });
 
+//new listing
 var hbsObject;
 router.get("/newlisting", function(req, res) {
   db.Category.findAll({})
@@ -132,18 +106,17 @@ router.get("/newlisting", function(req, res) {
     );
 });
 
+//post the new listing
 router.post("/newlisting", function(req, res) {
   db.Item.create(req.body).then(function(result) {
     res.redirect("/");
   });
 });
 
+//individual item page
 var infoObj;
 router.get("/iteminfo1/:id", function(req, res) {
   // need to wrap the binary image
-  console.log("TEST");
-  console.log(req.params.id);
-  // console.log(req);
   db.Item.findOne({
     where: {
       id: req.params.id
@@ -166,7 +139,6 @@ router.get("/iteminfo1/:id", function(req, res) {
         if (result.itemImage !== null) {
           result.itemImage = new Buffer(result.itemImage).toString("base64");
         }
-        console.log("RENTED DATES: ", dates);
         infoObj = {
           itemId: result.id,
           itemDescription: result.itemDescription,
@@ -233,6 +205,7 @@ router.get("/iteminfo1/:id", function(req, res) {
   // });
 });
 
+//sort by category
 var catObj = {};
 var catNumber;
 router.get("/category/:category", function(req, res) {
@@ -262,6 +235,7 @@ router.get("/category/:category", function(req, res) {
     });
 });
 
+//about page
 router.get("/about", function(req, res) {
   db.Category.findAll({}).then(function(result) {
     anotherObject = {
@@ -271,6 +245,7 @@ router.get("/about", function(req, res) {
   });
 });
 
+//howitworks page
 router.get("/howitworks", function(req, res) {
   db.Category.findAll({}).then(function(result) {
     anotherObject = {

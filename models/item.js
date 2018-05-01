@@ -1,12 +1,8 @@
-
+//dependencies
 var Category = require('./category');
 var User = require('./user');
 
-
-
 //ITEM TABLE - 
-// need to import category , and user
-
 module.exports = function (sequelize, DataTypes) {
     var Item = sequelize.define("Item", {
 
