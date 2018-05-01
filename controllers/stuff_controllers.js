@@ -20,13 +20,69 @@ var Sequelize = require("sequelize");
 // });
 
 router.get("/signUp", function(req, res){
-  res.render("signUp")
+  // need to wrap the binary image
+  db.Category.findAll({})
+    .then(function(result) {
+      anotherObject = {
+        categories: result
+      };
+    })
+    .then(
+      db.Item.findAll({}).then(function(results) {
+        for (let i = 0; i < results.length; i++) {
+          //convert the binary image into something handlebars image can understand
+
+          const element = results[i];
+          if (element.itemImage !== null) {
+            element.itemImage = new Buffer(element.itemImage).toString(
+              "base64"
+            );
+          }
+        }
+
+        anotherObject.Item = results;
+        anotherObject.user = req.user ? req.user.id : null;
+
+        console.log("ANOTHER OBJECT: ", anotherObject);
+        console.log("USER: ", )
+
+        res.render("signUp", anotherObject);
+      })
+    );
 });
 
+
 router.get("/login", function(req, res){
-  res.render("logIn")
+// need to wrap the binary image
+db.Category.findAll({})
+.then(function(result) {
+  anotherObject = {
+    categories: result
+  };
 })
-;
+.then(
+  db.Item.findAll({}).then(function(results) {
+    for (let i = 0; i < results.length; i++) {
+      //convert the binary image into something handlebars image can understand
+
+      const element = results[i];
+      if (element.itemImage !== null) {
+        element.itemImage = new Buffer(element.itemImage).toString(
+          "base64"
+        );
+      }
+    }
+
+    anotherObject.Item = results;
+    anotherObject.user = req.user ? req.user.id : null;
+
+    console.log("ANOTHER OBJECT: ", anotherObject);
+    console.log("USER: ", )
+
+    res.render("logIn", anotherObject);
+  })
+);
+});
 
 var anotherObject;
 router.get("/", function(req, res) {
@@ -87,6 +143,12 @@ router.post("/newlisting", function(req, res) {
     res.redirect("/");
   });
 });
+
+// router.post("/iteminfo1/:id", function(req, res) {
+//   db.RentedDates.create(req.body).then(function(result) {
+//     res.redirect("/");
+//   });
+// });
 
 var infoObj;
 router.get("/iteminfo1/:id", function(req, res) {

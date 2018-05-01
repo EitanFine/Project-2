@@ -2,6 +2,7 @@
 <script type="text/javascript" src="/WidgetCal/scripts/jquery-1.12.4.min.js"></script> --}}
 <script type="text/javascript" src="/WidgetCal/scripts/demos.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="/WidgetCal/jqwidgets/jqxbuttons.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxdatetimeinput.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcalendar.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxtooltip.js"></script>
@@ -26,7 +27,9 @@
                         <div class="col-xs-12">
                             <h3>Description</h3>
                             <p>{{this.itemDescription}}</p>
-                            <h4><b>Item ID: {{this.itemId}}</b></h4>
+                            <h4>
+                                <b>Item ID: {{this.itemId}}</b>
+                            </h4>
                             <h4>
                                 <b>For Rent:</b> {{this.itemName}}.</h4>
                             <h4>
@@ -78,6 +81,13 @@
                         <br>
                         <div class="card card-body">
                             <div id='calendar'></div>
+                            <br>
+
+                            <form method="post" action="">
+                                <div  name="rentedDate" id="rentedDates"></div>
+                                <input style = "display: none" name="rentItemId" value="{{this.itemId}}" >
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -91,6 +101,42 @@
     function inititeminfo() {
         getUserMap();
         calendar();
+        var rentDates = [];
+        var rentedDates = $("#rentedDates");
+        $('#calendar').on('change viewChange', function (event) {
+            var date = event.args.date;
+            // var view = event.args.view;
+            // var viewFrom = view.from;
+            // var viewTo = view.to;         
+            rentDates.push(convertDate(date));
+            rentedDates.empty();
+            rentedDates.text(rentDates);
+
+           var rentedObj = {rentDates};
+
+           $.ajax("/iteminfo1", {
+               type: "POST",
+               data: rentedObj
+           })
+        });
+    };
+    function convertDate(inputDate) {
+        //var d = new Date (inputDate)
+        //console.log( "datee: ", d);
+        var dd = inputDate.getDate();
+        var mm = inputDate.getMonth() + 1; //January is 0!
+        var yyyy = inputDate.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        };
+
+        if (mm < 10) {
+            mm = '0' + mm
+        };
+
+        var output = yyyy + "-" + mm + "-" + dd;
+        console.log(output);
+        return (output);
     };
 
     var getUserMap = function () {
@@ -113,12 +159,14 @@
         }
 
         console.log(restrictedDates);
+
         $("#calendar").jqxCalendar({
             theme: 'energyblue',
             width: '200px',
             height: '200px',
             restrictedDates: restrictedDates
         });
+    };
 
-    }
+
 </script>
