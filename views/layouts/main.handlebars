@@ -6,7 +6,7 @@
   <meta name="viewport" content="width='device-width', initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Rent My Stuff </title>
-  <link rel="icon" href="../../assets/images/for_rent-512.png">
+  <link rel="icon" href="../../logo.svg">
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -23,34 +23,30 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
     crossorigin="anonymous">
-
 </head>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<body>
-  <div class="jumbotron" style="height: 170px">
-    <nav class="navbar navbar-default">
-      <!-- <div class="container"> -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-          aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a style="font-size: 32px;" class="navbar-brand" href="/">RENT MY STUFF</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
+<nav style="background: #4484CE" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a  class="navbar-brand" href="/"><img style="width: 86px; margin-top: -19px;" class="animated infinite pulse" id="logo" src="../../rms_logo.png" alt="logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <b>Categories</b>
+              CATEGORIES
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               {{#each categories}}
               <li>
-                <a href='/category/{{this.categoryName}}'>
+                <a class="acha" href='/category/{{this.categoryName}}'>
                   {{this.categoryName}}
 
                 </a>
@@ -59,50 +55,37 @@
             </ul>
 
           </li>
-
           <li>
-            <a href="/howitworks">
-              <b>How It Works</b>
-            </a>
+            <a href="/howitworks">How It Works</a>
           </li>
-          <li>
-            <a href="/about">
-              <b>About</b>
-            </a>
-          </li>
-          {{#if user }}
-          <li>
-            <a href="/newlisting">
-              <b>Post Your Item</b>
-            </a>
-          </li>
-
-            <li>
-            <a href="/logOut">Log Out
-            </a>
-          </li>
-          {{/if}} 
-          
-          {{!-- {{#else}} --}}
-          <li>
-            <a href="/signUp">
-              <b>Sign Up</b>
-            </a>
-          </li>
-          <li>
-            <a href="/logIn">
-              <b>Log In</b>
-            </a>
-            {{!-- {{/else}} --}}
-        </ul>
-      </div>
-      <!-- </div> -->
+        <li><a href="/about">ABOUT</a></li>
+        {{#if user }}
+        <li><a href="/newlisting">POST YOUR ITEM</a></li>
+        <li><a href="/logOut">Log Out</a></li>
+        {{/if}}
+        <li><a href="/signUp">SIGN UP</a></li>
+        <li><a href="/logIn">LOG IN</a></li>
+      </ul>
+    </div>
   </div>
+</nav>
 
+<div class="jumbotron text-center" >
+  <h1>RENT MY STUFF</h1> 
+</div>
 
 
   {{{body}}}
 
+  
+
+  <footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Made By <a href="/about" title="Visit w3schools">Awesome Team!</a></p>
+</footer>
+  <script src="/js/style.js"></script>
   <script src="/js/map.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSMDeXXQxaeLJ4ZGXuwSKAM3NHBP4ckTc"> </script>
 

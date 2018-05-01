@@ -111,7 +111,7 @@
               <div class="panel-body">
                 <form method="post" action="" class="create-update-form " role="login">
 
-                  {{!-- this whole block is for the drop down for categories and it saves the category ID for the new item --}}
+                 
                   <div class="form-group">
                     <label for="auth">Category: </label>
                     <div class="input-group mb-3">
@@ -123,23 +123,16 @@
                     </div>
                   </div>
 
-                  {{!-- ---------------------------------------------- --}} {{!-- this whole block is for the drop down for users and it saves
-                  the user ID for the new item--}}
+                
                   <div type="hidden" class="form-group">
-                    {{!--
-                    <label for="auth">User: </label> --}}
+                   
                     <div class="input-group mb-3">
-                      {{!--
-                      <select class="custom-select" name="itemUserId"> --}} {{!-- {{#each users}} --}} {{!--
-                        <option value="{{this.id}}">{{this.name}}</option> --}}
-                        <input type="hidden" name="itemUserId" value="{{user}}"> {{!-- {{/each}} --}} {{!-- </select> --}}
+                    
+                        <input type="hidden" name="itemUserId" value="{{user}}"> 
                     </div>
                   </div>
                   <div class="form-group">
-                    {{!--
-                    <div class="pull-right">
-                      <a href="#">Sign up now</a>
-                    </div> --}}
+     
                     <label for="itemName">Item Name</label>
                     <input type="textarea" name="itemName" id="name" placeholder="List item to rent" required class="form-control input-lg" />
                   </div>
