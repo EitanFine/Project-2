@@ -154,6 +154,7 @@ router.get("/iteminfo1/:id", function (req, res) {
           zipcode: resultU.zipcode,
           rentedDates: dates
         };
+        infoObj.user = req.user ? req.user.id : null;
         res.render("itemInfo", infoObj);
       });
       infoObj = [];
