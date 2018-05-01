@@ -8,7 +8,7 @@
 
 var express = require("express");
 var session = require("express-session");
-var passport = require("../config/passport")
+var passport = require("../config/passport");
 
 var router = express.Router();
 var db = require("../models");
@@ -19,7 +19,7 @@ var Sequelize = require("sequelize");
 //   res.render("members")
 // });
 
-router.get("/signUp", function(req, res){
+router.get("/signUp", function(req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
     .then(function(result) {
@@ -44,44 +44,43 @@ router.get("/signUp", function(req, res){
         anotherObject.user = req.user ? req.user.id : null;
 
         console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ", )
+        console.log("USER: ");
 
         res.render("signUp", anotherObject);
       })
     );
 });
 
+router.get("/login", function(req, res) {
+  // need to wrap the binary image
+  db.Category.findAll({})
+    .then(function(result) {
+      anotherObject = {
+        categories: result
+      };
+    })
+    .then(
+      db.Item.findAll({}).then(function(results) {
+        for (let i = 0; i < results.length; i++) {
+          //convert the binary image into something handlebars image can understand
 
-router.get("/login", function(req, res){
-// need to wrap the binary image
-db.Category.findAll({})
-.then(function(result) {
-  anotherObject = {
-    categories: result
-  };
-})
-.then(
-  db.Item.findAll({}).then(function(results) {
-    for (let i = 0; i < results.length; i++) {
-      //convert the binary image into something handlebars image can understand
+          const element = results[i];
+          if (element.itemImage !== null) {
+            element.itemImage = new Buffer(element.itemImage).toString(
+              "base64"
+            );
+          }
+        }
 
-      const element = results[i];
-      if (element.itemImage !== null) {
-        element.itemImage = new Buffer(element.itemImage).toString(
-          "base64"
-        );
-      }
-    }
+        anotherObject.Item = results;
+        anotherObject.user = req.user ? req.user.id : null;
 
-    anotherObject.Item = results;
-    anotherObject.user = req.user ? req.user.id : null;
+        console.log("ANOTHER OBJECT: ", anotherObject);
+        console.log("USER: ");
 
-    console.log("ANOTHER OBJECT: ", anotherObject);
-    console.log("USER: ", )
-
-    res.render("logIn", anotherObject);
-  })
-);
+        res.render("logIn", anotherObject);
+      })
+    );
 });
 
 var anotherObject;
@@ -109,18 +108,13 @@ router.get("/", function(req, res) {
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
 
-        console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ", )
+        // console.log("ANOTHER OBJECT: ", anotherObject);
+        // console.log("USER: ", )
 
         res.render("index", anotherObject);
       })
     );
 });
-
-
-
-
-
 
 var hbsObject;
 router.get("/newlisting", function(req, res) {
@@ -143,12 +137,6 @@ router.post("/newlisting", function(req, res) {
     res.redirect("/");
   });
 });
-
-// router.post("/iteminfo1/:id", function(req, res) {
-//   db.RentedDates.create(req.body).then(function(result) {
-//     res.redirect("/");
-//   });
-// });
 
 var infoObj;
 router.get("/iteminfo1/:id", function(req, res) {
@@ -194,6 +182,13 @@ router.get("/iteminfo1/:id", function(req, res) {
           rentedDates: dates
         };
         res.render("itemInfo", infoObj);
+      });
+      infoObj = [];
+    });
+
+    router.post("/iteminfo1/:id", function(req, res) {
+      db.RentedDates.create(req.body).then(function(result) {
+       console.log("meh")
       });
     });
 
@@ -262,34 +257,28 @@ router.get("/category/:category", function(req, res) {
           db.Category.findAll({}).then(function(anotherresult) {
             catObj.categories = anotherresult;
             res.render("index", catObj);
-
           });
-
-
         });
     });
 });
 
-
 router.get("/about", function(req, res) {
-  db.Category.findAll({})
-  .then(function(result) {
+  db.Category.findAll({}).then(function(result) {
     anotherObject = {
       categories: result
     };
     res.render("about", anotherObject);
-  })
+  });
 });
 
 router.get("/howitworks", function(req, res) {
-  db.Category.findAll({})
-  .then(function(result) {
+  db.Category.findAll({}).then(function(result) {
     anotherObject = {
       categories: result
     };
     res.render("howitworks", anotherObject);
-  })});
-
+  });
+});
 
 router.use(passport.initialize());
 router.use(passport.session());

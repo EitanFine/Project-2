@@ -84,8 +84,8 @@
                             <br>
 
                             <form method="post" action="">
-                                <div  name="rentedDate" id="rentedDates"></div>
-                                <input style = "display: none" name="rentItemId" value="{{this.itemId}}" >
+                                <div name="rentedDate" id="rentedDates"></div>
+                                <input id="idvalue" style="display: none" name="rentItemId" value="{{this.itemId}}">
                             </form>
 
                         </div>
@@ -97,27 +97,39 @@
 </div>
 </div>
 <script> 
-    console.log("top of script before anything ");
+    var idvalue = $("#idvalue").val();
     function inititeminfo() {
         getUserMap();
         calendar();
         var rentDates = [];
+        var rentDate;
         var rentedDates = $("#rentedDates");
         $('#calendar').on('change viewChange', function (event) {
             var date = event.args.date;
-            // var view = event.args.view;
-            // var viewFrom = view.from;
-            // var viewTo = view.to;         
+            rentDate = convertDate(date);
             rentDates.push(convertDate(date));
             rentedDates.empty();
             rentedDates.text(rentDates);
+            var r = confirm("really add " + rentDate + " to rent date?");
+            if (r == true) {
 
-           var rentedObj = {rentDates};
+                var rentedObj = {
+                    rentedDate: rentDate,
+                    rentItemId: idvalue
+                };
 
-           $.ajax("/iteminfo1", {
-               type: "POST",
-               data: rentedObj
-           })
+                $.ajax("/iteminfo1/:id", {
+                    type: "POST",
+                    data: rentedObj
+                })
+
+                if(!alert('date added!')){window.location.reload();}
+
+
+            }
+            else {
+                alert("date not added.")
+            }
         });
     };
     function convertDate(inputDate) {
