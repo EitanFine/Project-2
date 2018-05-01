@@ -132,7 +132,7 @@ router.get("/newlisting", function(req, res) {
     })
     .then(
       db.User.findAll({}).then(function(results) {
-        hbsObject.users = results;
+        hbsObject.user = req.user ? req.user.id : null;
         res.render("newListing", hbsObject);
       })
     );
