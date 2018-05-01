@@ -19,16 +19,16 @@ var Sequelize = require("sequelize");
 //   res.render("members")
 // });
 
-router.get("/signUp", function(req, res) {
+router.get("/signUp", function (req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
-    .then(function(result) {
+    .then(function (result) {
       anotherObject = {
         categories: result
       };
     })
     .then(
-      db.Item.findAll({}).then(function(results) {
+      db.Item.findAll({}).then(function (results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
 
@@ -43,24 +43,24 @@ router.get("/signUp", function(req, res) {
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
 
-        console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ");
+        // console.log("ANOTHER OBJECT: ", anotherObject);
+        // console.log("USER: ");
 
         res.render("signUp", anotherObject);
       })
     );
 });
 
-router.get("/login", function(req, res) {
+router.get("/login", function (req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
-    .then(function(result) {
+    .then(function (result) {
       anotherObject = {
         categories: result
       };
     })
     .then(
-      db.Item.findAll({}).then(function(results) {
+      db.Item.findAll({}).then(function (results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
 
@@ -75,8 +75,8 @@ router.get("/login", function(req, res) {
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
 
-        console.log("ANOTHER OBJECT: ", anotherObject);
-        console.log("USER: ");
+        // console.log("ANOTHER OBJECT: ", anotherObject);
+        // console.log("USER: ");
 
         res.render("logIn", anotherObject);
       })
@@ -84,16 +84,16 @@ router.get("/login", function(req, res) {
 });
 
 var anotherObject;
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   // need to wrap the binary image
   db.Category.findAll({})
-    .then(function(result) {
+    .then(function (result) {
       anotherObject = {
         categories: result
       };
     })
     .then(
-      db.Item.findAll({}).then(function(results) {
+      db.Item.findAll({}).then(function (results) {
         for (let i = 0; i < results.length; i++) {
           //convert the binary image into something handlebars image can understand
 
@@ -117,29 +117,29 @@ router.get("/", function(req, res) {
 });
 
 var hbsObject;
-router.get("/newlisting", function(req, res) {
+router.get("/newlisting", function (req, res) {
   db.Category.findAll({})
-    .then(function(result) {
+    .then(function (result) {
       hbsObject = {
         categories: result
       };
     })
     .then(
-      db.User.findAll({}).then(function(results) {
+      db.User.findAll({}).then(function (results) {
         hbsObject.user = req.user ? req.user.id : null;
         res.render("newListing", hbsObject);
       })
     );
 });
 
-router.post("/newlisting", function(req, res) {
-  db.Item.create(req.body).then(function(result) {
+router.post("/newlisting", function (req, res) {
+  db.Item.create(req.body).then(function (result) {
     res.redirect("/");
   });
 });
 
 var infoObj;
-router.get("/iteminfo1/:id", function(req, res) {
+router.get("/iteminfo1/:id", function (req, res) {
   // need to wrap the binary image
   console.log("TEST");
   console.log(req.params.id);
@@ -148,17 +148,17 @@ router.get("/iteminfo1/:id", function(req, res) {
     where: {
       id: req.params.id
     }
-  }).then(function(result) {
+  }).then(function (result) {
     db.User.findOne({
       where: {
         id: result.itemUserId
       }
-    }).then(function(resultU) {
+    }).then(function (resultU) {
       db.RentedDates.findAll({
         where: {
           rentItemId: result.id
         }
-      }).then(function(resultR) {
+      }).then(function (resultR) {
         var dates = [];
         for (var i = 0; i < resultR.length; i++) {
           dates.push(resultR[i].rentedDate);
@@ -186,11 +186,12 @@ router.get("/iteminfo1/:id", function(req, res) {
       infoObj = [];
     });
 
-    router.post("/iteminfo1/:id", function(req, res) {
-      db.RentedDates.create(req.body).then(function(result) {
-       console.log("meh")
+    router.post("/iteminfo1/:id", function (req, res) {
+      db.RentedDates.create(req.body).then(function (result) {
+        console.log("meh")
       });
     });
+
 
     //   if (result.itemImage !== null) {
     //     result.itemImage = new Buffer(result.itemImage).toString('base64');
@@ -212,7 +213,15 @@ router.get("/iteminfo1/:id", function(req, res) {
     //   };
     //   res.render("itemInfo", infoObj);
     // })
+
+
+
   });
+
+
+
+
+
 
   //   console.log(result.itemDescription);
   //   var element = result[0];
@@ -233,28 +242,141 @@ router.get("/iteminfo1/:id", function(req, res) {
   // });
 });
 
+
+
+//manager
+
+router.get("/manageItems", function (req, res) {
+  var hbsObject = {
+    userId: req.user.id
+  };
+  console.log("MANAGE ITEMS ROUTE -> USER: ", req.user);
+
+  db.Item.findAll({
+    where: {
+      itemUserId: req.user.id
+    }
+  }).then(function (results) {
+    console.log("After renders", req.user)
+
+    hbsObject.Item = results;
+
+    res.render("manageItems", hbsObject);
+  })
+});
+
+router.delete("/manageItems/id/:id", function(req, res) {
+  db.Item.destroy ({
+    where : {
+      id : req.params.id
+    }
+  }).then(function(data){
+    res.json(data);
+  })
+});
+
+
+router.put("/manageItems", function(req, res){
+
+
+});
+
+
+
+
+//     .then(
+//       db.User.findAll({}).then(function(results) {
+//         hbsObject.user = req.user ? req.user.id : null;
+//         res.render("newListing", hbsO`bject);
+//       })
+//     );
+// });
+
+// router.post("/newlisting", function(req, res) {
+//   db.Item.create(req.body).then(function(result) {
+//     res.redirect("/");
+//   });
+// });
+
+var infoObj;
+router.get("/iteminfo1/:id", function (req, res) {
+  // need to wrap the binary image
+  console.log("TEST");
+  console.log(req.params.id);
+  // console.log(req);
+  db.Item.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function (result) {
+    db.User.findOne({
+      where: {
+        id: result.itemUserId
+      }
+    }).then(function (resultU) {
+      db.RentedDates.findAll({
+        where: {
+          rentItemId: result.id
+        }
+      }).then(function (resultR) {
+        var dates = [];
+        for (var i = 0; i < resultR.length; i++) {
+          dates.push(resultR[i].rentedDate);
+        }
+        if (result.itemImage !== null) {
+          result.itemImage = new Buffer(result.itemImage).toString("base64");
+        }
+        console.log("RENTED DATES: ", dates);
+        infoObj = {
+          itemId: result.id,
+          itemDescription: result.itemDescription,
+          itemPrice: result.itemPrice,
+          itemName: result.itemName,
+          itemImage: result.itemImage,
+          name: resultU.name,
+          email: resultU.email,
+          streetAddress: resultU.streetAddress,
+          city: resultU.city,
+          state: resultU.state,
+          zipcode: resultU.zipcode,
+          rentedDates: dates
+        };
+        res.render("itemInfo", infoObj);
+      });
+      infoObj = [];
+    });
+
+    router.post("/iteminfo1/:id", function (req, res) {
+      db.RentedDates.create(req.body).then(function (result) {
+        console.log("meh")
+      });
+    });
+
+  });
+});
+
 var catObj = {};
 var catNumber;
-router.get("/category/:category", function(req, res) {
+router.get("/category/:category", function (req, res) {
   db.Category.findAll({
     where: {
       categoryName: req.params.category
     }
   })
-    .then(function(result) {
+    .then(function (result) {
       catNumber = result[0].dataValues.id;
     })
-    .then(function() {
+    .then(function () {
       db.Item.findAll({
         where: {
           itemcatId: catNumber
         }
       })
-        .then(function(newresult) {
+        .then(function (newresult) {
           catObj.Item = newresult;
         })
-        .then(function() {
-          db.Category.findAll({}).then(function(anotherresult) {
+        .then(function () {
+          db.Category.findAll({}).then(function (anotherresult) {
             catObj.categories = anotherresult;
             res.render("index", catObj);
           });
@@ -262,8 +384,8 @@ router.get("/category/:category", function(req, res) {
     });
 });
 
-router.get("/about", function(req, res) {
-  db.Category.findAll({}).then(function(result) {
+router.get("/about", function (req, res) {
+  db.Category.findAll({}).then(function (result) {
     anotherObject = {
       categories: result
     };
@@ -271,8 +393,8 @@ router.get("/about", function(req, res) {
   });
 });
 
-router.get("/howitworks", function(req, res) {
-  db.Category.findAll({}).then(function(result) {
+router.get("/howitworks", function (req, res) {
+  db.Category.findAll({}).then(function (result) {
     anotherObject = {
       categories: result
     };

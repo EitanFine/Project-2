@@ -1,0 +1,59 @@
+<style>
+    .cut-text {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 160px;
+        height: 1.2em;
+        white-space: nowrap;
+    }
+</style>
+<div id="pricing" class="container">
+    <h2>MANAGE Your ITEMS</h2>
+
+    <div>
+        {{#each Item}}
+        <div class="col-sm-4 col-xs-12">
+            <div class="panel panel text-center">
+                <div>
+
+                    <button type="button" class="close" aria-label="Close" data-id="{{this.id}}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+
+                    <h4 class="cut-text">{{this.itemName}}</h4>
+                </div>
+                <div class="panel-body">
+                    <img style="height: 225px; width: 90%; border: 2px solid #F19F4D;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
+                </div>
+                <div class="panel-footer">
+                    <h3>${{this.itemPrice}}</h3>
+                    {{!--
+                    <p>{{this.itemDescription}}</p> --}}
+                    <h4>(PER DAY)</h4>
+                    <a href="/iteminfo1/{{this.id}}">
+                        <button class="btn btn-lg">View Listing</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    var dltButton = $('.close');
+    dltButton.click(function(e){
+        const id = $(this).attr('data-id');
+    $.ajax({
+        url: "/manageItems/id/"+ id,
+        method: "DELETE"
+    }).then(function(data){
+        window.location.reload();
+    })
+
+   
+    })
+
+</script>
