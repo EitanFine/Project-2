@@ -1,133 +1,58 @@
-{{!-- <li>
-    <a href="/signUp">
-        <b>Sign Up</b>
-    </a>
-</li>
-<li>
-    <a href="/logIn">
-        <b>Log In</b>
-    </a> --}}
-</li>
-<div class="container">
-    <div class="row"></div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-
-    {{!--
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-            {{#each categories}}
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
-                    <span class="caret"></span>
-                </a>
-                {{this.categoryName}}
-            </li>
-            {{/each}}
-        </ul> --}} {{!--
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <b>Categories</b>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {{#each categories}}
-                        <li>
-                            <a href="#">
-                                {{this.categoryName}}
-
-                            </a>
-                        </li>
-                        {{/each}}
-                    </ul>
-
-                </li> --}} {{!--
-                <li>
-                    <select class="form-control" name="category" id="category">
-                        {{#each categories}}
-                        <option value={{this.id}}>{{this.categoryName}}</option>
-                        {{/each}}
-                    </select>
-                </li> --}} {{!--
-                <li>
-                    <a href="#">
-                        <b>How It Works</b>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <b>About</b>
-                    </a>
-                </li>
-                <li>
-                    <a href="/newlisting">
-                        <button type="button" class="btn btn-default navbar-btn">Post Your Item</button>
-                    </a>
-                </li>
-            </ul>
-        </div> --}} {{!--
-        <form class="navbar-form navbar-left">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter Zip Code">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <button type="button" class="btn btn-default navbar-btn">List Your Item</button>
-        </ul>
-    </div> --}}
-    <!-- /.navbar-collapse -->
-    {{!-- <hr> --}}
-
-    <div class="panel panel-primary  ">
-        <div class="panel-heading">
-            {{!--
-            <h3 class="panel-title">{{this.categoryName}}</h3> --}}
+<div id="pricing" class="container">
+    <h2>Latest Posts</h2>
+  <div>
+      {{#each Item}}
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel text-center">
+        <div>
+          <h4 >{{this.itemName}}</h4>
         </div>
-        <style>
-            .row.make-columns {
-                -moz-column-width: 19em;
-                -webkit-column-width: 19em;
-                -moz-column-gap: 1em;
-                -webkit-column-gap: 1em;
-            }
+        <div class="panel-body">
+         <img style="height: 225px; width: 90%; border: 2px solid #F19F4D;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
+        </div>
+        <div class="panel-footer">
+          <h3>${{this.itemPrice}}</h3>
+          {{!-- <p>{{this.itemDescription}}</p> --}}
+          <h4>(PER DAY)</h4>
+           <a href="/iteminfo1/{{this.id}}" ><button class="btn btn-lg">View Listing</button></a>
+          
+        </div>
+      </div>      
+    </div> 
+    {{/each}}       
+  </div>
+</div>
 
-            .row.make-columns>div {
-                display: inline-block;
-                padding: .5rem;
-                width: 100%;
-            }
+<h2 class="text-center" >What our customers say</h2>
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 
-            /* demo only* */
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment Box</span></h4>
+      </div>
+      <div class="item">
+        <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      </div>
+    </div>
 
-            .panel {
-                display: inline-block;
-                height: 100%;
-                width: 100%;
-            }
-        </style>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-        <br> {{!--
-        <div class="container"> --}}
-            <div class="row make- columns">
-
-                {{#each Item}}
-                <div class="col-xs-6 col-md-4">
-                    <div class="panel panel-default thumbnail">
-                        <div class="panel-body">
-                            {{!-- 1 - This is my panel with some content!
-                            <br> --}}
-                            <img style="height: 225px; width: 90%;" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
-
-                        </div>
-                        <h3>{{this.itemName}}</h3>
-                        <p>{{this.itemDescription}}</p>
-                        <p>Per Day: {{this.itemPrice}}</p>
-                        <a href="/iteminfo1/{{this.id}}" class="btn btn-primary" role="button">View Listing</a>
-
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            {{!-- </div> --}}
