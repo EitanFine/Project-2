@@ -161,10 +161,11 @@
             var restrictedDates = $('#rented').text().trim().split(',');
             //convert into array of date, need to 
             //add 24 hours-  too long of story why
-            for (let i = 0; i < restrictedDates.length; i++) {
-                restrictedDates[i] = new Date(restrictedDates[i]);
-                restrictedDates[i].setHours(25);
-            }
+            for (let i = 0; i < restrictedDates.length ; i++) {
+              restrictedDates[i] = new Date(restrictedDates[i]);
+              if ( i !== restrictedDates.length - 1) {
+              restrictedDates[i].setHours(25);}
+          }
 
             console.log(restrictedDates);
 

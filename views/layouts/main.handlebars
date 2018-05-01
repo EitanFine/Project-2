@@ -60,12 +60,20 @@
           </li>
         <li><a href="/about">ABOUT</a></li>
         {{#if user }}
+<<<<<<< HEAD
         <li><a href="/newlisting">POST</a></li>
         <li><a href="/manageItems">ACCOUNT</a></li>
         <li><a href="/logOut">LOG OUT</a></li>
         {{/if}}
+=======
+        <li><a href="/newlisting">POST YOUR ITEM</a></li>
+        <li><a href="/manageItems">MANAGE ITEMS</a></li>
+        <li><a href="/logOut">Log Out</a></li>
+        {{else}}
+>>>>>>> d258b7e27cfcdcf7542749cd766c98785e510136
         <li><a href="/signUp">SIGN UP</a></li>
         <li><a href="/logIn">LOG IN</a></li>
+        {{/if}}
       </ul>
     </div>
   </div>
