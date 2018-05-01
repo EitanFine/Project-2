@@ -39,8 +39,6 @@ app.set("view engine", "handlebars");
 // Routes
 // =============================================================
 
-//un comment !!!! after db set up
-//require("./routes/api-routes.js")(app);
 require("./routes/api-routes.js")(app);
 var routes = require("./controllers/stuff_controllers.js");
 app.use(routes);
