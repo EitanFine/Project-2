@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="/WidgetCal/jqwidgets/styles/jqx.base.css" type="text/css" /> {{!--
-<script type="text/javascript" src="/WidgetCal/scripts/jquery-1.12.4.min.js"></script> --}}
+<link rel="stylesheet" href="/WidgetCal/jqwidgets/styles/jqx.base.css" type="text/css" /> 
 <script type="text/javascript" src="/WidgetCal/scripts/demos.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxcore.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxbuttons.js"></script>
@@ -84,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{!-- </div> --}}
+                     
                 </div>
             </div>
         </div>
@@ -104,7 +103,7 @@
                 rentDates.push(convertDate(date));
                 rentedDates.empty();
                 rentedDates.text(rentDates);
-                var r = confirm("really add " + rentDate + " to rent date?");
+                var r = confirm("Really add " + rentDate + " to rent date?");
                 if (r == true) {
 
                     var rentedObj = {
@@ -117,12 +116,10 @@
                         data: rentedObj
                     })
 
-                    if (!alert('date added!')) { window.location.reload(); }
-
-
+                    if (!alert('Date added!')) { window.location.reload(); }
                 }
                 else {
-                    alert("date not added.")
+                    alert("Date not added.")
                 }
                 var rentedObj = { rentDates };
 
@@ -133,8 +130,7 @@
             });
         };
         function convertDate(inputDate) {
-            //var d = new Date (inputDate)
-            //console.log( "datee: ", d);
+        
             var dd = inputDate.getDate();
             var mm = inputDate.getMonth() + 1; //January is 0!
             var yyyy = inputDate.getFullYear();
