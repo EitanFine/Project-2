@@ -145,6 +145,7 @@ router.get("/iteminfo1/:id", function(req, res) {
           itemPrice: result.itemPrice,
           itemName: result.itemName,
           itemImage: result.itemImage,
+          itemURL: result.itemURL,
           name: resultU.name,
           email: resultU.email,
           streetAddress: resultU.streetAddress,

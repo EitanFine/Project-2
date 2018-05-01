@@ -1,102 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
-  <title>Insert title here</title>
-  <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  <!-- Google Font -->
-  <link href="http://fonts.googleapis.com/css?family=Lato:100italic,100,300italic,300,400italic,400,700italic,700,900italic,900"
-    rel="stylesheet" type="text/css">
-  <!-- Bootstrap Core CSS -->
-  <link type="text/css" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <!-- jQuery Library -->
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-  <!-- Bootstrap Core JS -->
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-  <style>
-    @CHARSET "UTF-8";
-
-    * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      outline: none;
-    }
-
-    body {
-      background: url(images/bg.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-    }
-
-    .login-form {
-      margin: 100px auto;
-      max-width: 500px;
-      font: 15px/1.6em Lato, serif;
-    }
-
-    .login-form .panel {
-      border: none;
-      -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.63);
-      -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.63);
-      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.63);
-    }
-
-    .login-form .panel .panel-heading {
-      color: #fff;
-      background: #6e91af;
-      line-height: 2.4em;
-      font-weight: bold;
-      padding-left: 26px;
-    }
-
-    .login-form .panel .panel-body {
-      background: #f2f2f2;
-      padding: 20px 26px;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      -webkit-border-bottom-left-radius: 5px;
-      -moz-border-radius-bottomleft: 5px;
-      -webkit-border-bottom-right-radius: 5px;
-      -moz-border-radius-bottomright: 5px;
-    }
-
-    form[role=login] {
-      color: #a5a5a5;
-    }
-
-    form[role=login] label {
-      font-weight: normal;
-    }
-
-    form[role=login] input,
-    form[role=login] button {
-      font-size: 14px;
-    }
-
-    form[role=login] input {
-      margin: .5em 0;
-    }
-
-    form[role=login] button {
-      margin-top: 2em;
-      font-weight: bold;
-    }
-  </style>
-</head>
-
-<body>
-
+  
   <div class="container">
     <div class="row"></div>
 
@@ -111,7 +16,7 @@
               <div class="panel-body">
                 <form method="post" action="" class="create-update-form " role="login">
 
-                 
+
                   <div class="form-group">
                     <label for="auth">Category: </label>
                     <div class="input-group mb-3">
@@ -123,16 +28,16 @@
                     </div>
                   </div>
 
-                
+
                   <div type="hidden" class="form-group">
-                   
+
                     <div class="input-group mb-3">
-                    
-                        <input type="hidden" name="itemUserId" value="{{user}}"> 
+
+                      <input type="hidden" name="itemUserId" value="{{user}}">
                     </div>
                   </div>
                   <div class="form-group">
-     
+
                     <label for="itemName">Item Name</label>
                     <input type="textarea" name="itemName" id="name" placeholder="List item to rent" required class="form-control input-lg" />
                   </div>
@@ -143,6 +48,13 @@
                     <label for="itemDescription">Description</label>
                     <input type="textarea" name="itemDescription" id="description" placeholder="Add a brief description about your item" required
                       class="form-control input-lg" />
+                  </div>
+                  <div class="form-group">
+                    <div class="pull-right">
+                    </div>
+                    <label for="itemURL">Image URL</label>
+                    <input type="textarea" name="itemURL" id="description" placeholder="Add a URL to a picture of your item" class="form-control input-lg"
+                    />
                   </div>
                   <div class="form-group">
                     <div class="pull-right">
@@ -160,7 +72,3 @@
         </section>
 
 
-
-</body>
-
-</html>
