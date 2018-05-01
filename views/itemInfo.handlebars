@@ -8,66 +8,26 @@
 <script type="text/javascript" src="/WidgetCal/jqwidgets/jqxtooltip.js"></script>
 <script type="text/javascript" src="/WidgetCal/jqwidgets/globalization/globalize.js"></script>
 
-<div class="container-fluid">
-
-    <div class="panel panel-primary">
+<div id="contact" class="container">
+    <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">{{this.itemName}}</h3>
         </div>
         <div class="panel-body">
+
             <div class="row">
-                <div class="col-md-4 col-xs-4">
-                    <br>
-                    <div class="thumbnail">
-                        <img style="height: 370px;" id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="...">
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-4">
+
+                <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <h3>Description</h3>
-                            <p>{{this.itemDescription}}</p>
-                            <h4>
-                                <b>Item ID: {{this.itemId}}</b>
-                            </h4>
-                            <h4>
-                                <b>For Rent:</b> {{this.itemName}}.</h4>
-                            <h4>
-                                <b>Price:</b>(Per Day) ${{this.itemPrice}}.</h4>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-xs-8">
-                            <h3>Contact Person</h3>
-                            <h4>
-                                <b>Name:</b> {{this.name}}.</h4>
-                            <h4 id="address">
-                                <b>Address:</b>
-                                <span id="gAddress"> {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}.</span>
-                            </h4>
-                            <h4>
-                                <b>Email:</b> {{this.email}}. </h4>
-                            <h4 style="display: none;">Rented Dates:
-                                <span id="rented"> {{this.rentedDates}}.</span>
-                            </h4>
-                            <hr> {{!--
-                            <a href="#">
-                                <button type="button" class="btn btn-primary dropdown-toggle">Rent It</button>
-                            </a> --}}
+                        <div class="col-sm-6 form-group">
+                            <img style="height: 385px;" id="itemInfoImg" src="data:image/jpeg;base64, {{this.itemImage}}" alt="..."> </div>
+                        <div class="col-sm-6">
+
+                            <div class=" well well-sm">
+                                <div id="map" style="height: 370px;"></div>
+                            </div>
 
                         </div>
-                        <br>
-                        <div class="col-xs-4">
-                            {{!--
-                            <div id='calendar'></div> --}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <br>
-                    <div class=" well well-sm">
-                        <div id="map" style="height: 370px;"></div>
                     </div>
                 </div>
             </div>
@@ -88,6 +48,54 @@
                                 <input id="idvalue" style="display: none" name="rentItemId" value="{{this.itemId}}">
                             </form>
 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3>Description</h3>
+                                    <p>{{this.itemDescription}}</p>
+                                    <h4>
+                                        <b>Item ID: {{this.itemId}}</b>
+                                    </h4>
+                                    <h4>
+                                        <b>For Rent:</b> {{this.itemName}}.</h4>
+                                    <h4>
+                                        <b>Price:</b>(Per Day) ${{this.itemPrice}}.</h4>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3>Contact Person</h3>
+                                    <h4>
+                                        <b>Name:</b> {{this.name}}.</h4>
+                                    <h4 id="address">
+                                        <b>Address:</b>
+                                        <span id="gAddress"> {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}.</span>
+                                    </h4>
+                                    <h4>
+                                        <b>Email:</b> {{this.email}}. </h4>
+                                    <h4 style="display: none;">Rented Dates:
+                                        <span id="rented"> {{this.rentedDates}}.</span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button style="background-color: #f19f4d; color: white"  class="btn btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                        Check Availability
+                                    </button>
+                                    <div class="collapse" id="collapseExample">
+                                        <br>
+                                        <div class="card card-body">
+                                            <div id='calendar'></div>
+                                            <br>
+                                            <form method="post" action="">
+                                                <div name="rentedDate" id="rentedDates"></div>
+                                                <input style="display: none" name="rentItemId" value="{{this.itemId}}">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +103,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script> 
     var idvalue = $("#idvalue").val();
     function inititeminfo() {
@@ -130,6 +138,12 @@
             else {
                 alert("date not added.")
             }
+            var rentedObj = { rentDates };
+
+            $.ajax("/iteminfo1", {
+                type: "POST",
+                data: rentedObj
+            })
         });
     };
     function convertDate(inputDate) {
@@ -182,3 +196,36 @@
 
 
 </script>
+
+<h2 class="text-center" >What our customers say</h2>
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment Box</span></h4>
+      </div>
+      <div class="item">
+        <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
