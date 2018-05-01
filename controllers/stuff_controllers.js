@@ -165,61 +165,19 @@ router.get("/iteminfo1/:id", function (req, res) {
       });
     });
 
-
-    //   if (result.itemImage !== null) {
-    //     result.itemImage = new Buffer(result.itemImage).toString('base64');
-    //   }
-    //   /* <h4>Address: {{this.streetAddress}}, {{this.city}}, {{this.state}}, {{this.zipcode}}</h4> */
-
-    //   infoObj = {
-    //     itemDescription: result.itemDescription,
-    //     itemPrice: result.itemPrice,
-    //     itemName: result.itemName,
-    //     itemImage: result.itemImage,
-    //     name: resultU.name,
-    //     email: resultU.email,
-    //     streetAddress: resultU.streetAddress,
-    //     city: resultU.city,
-    //     state: resultU.state,
-    //     zipcode: resultU.zipcode
-
-    //   };
-    //   res.render("itemInfo", infoObj);
-    // })
-
-
-
   });
 
-
-
-
-
-
-  //   console.log(result.itemDescription);
-  //   var element = result[0];
-  // .done(function (result) {
-  //   if (result.itemImage !== null) {
-  //     result.itemImage = new Buffer(result.itemImage).toString('base64');
-  //   }
-  //   infoObj = {
-  //     itemDescription: result.itemDescription,
-  //     itemPrice: result.itemPrice,
-  //     itemName: result.itemName,
-  //     itemImage: result.itemImage
-
-  //   };
-  //   console.log("Before render: ", result.itemDescription);
-  //   res.render("itemInfo", infoObj);
-  //   console.log("After render: ", result.itemDescription);
-  // });
 });
-
-
 
 //manager
 
 router.get("/manageItems", function (req, res) {
+  db.Category.findAll({})
+    .then(function (result) {
+      hbsObject = {
+        categories: result
+      };
+    })
   var hbsObject = {
     userId: req.user.id
   };
@@ -247,29 +205,6 @@ router.delete("/manageItems/id/:id", function(req, res) {
     res.json(data);
   })
 });
-
-
-router.put("/manageItems", function(req, res){
-
-
-});
-
-
-
-
-//     .then(
-//       db.User.findAll({}).then(function(results) {
-//         hbsObject.user = req.user ? req.user.id : null;
-//         res.render("newListing", hbsO`bject);
-//       })
-//     );
-// });
-
-// router.post("/newlisting", function(req, res) {
-//   db.Item.create(req.body).then(function(result) {
-//     res.redirect("/");
-//   });
-// });
 
 var infoObj;
 router.get("/iteminfo1/:id", function (req, res) {
