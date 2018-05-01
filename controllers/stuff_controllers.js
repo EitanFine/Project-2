@@ -189,7 +189,7 @@ router.get("/manageItems", function (req, res) {
     }
   }).then(function (results) {
     console.log("After renders", req.user)
-
+    hbsObject.user = req.user ? req.user.id : null;
     hbsObject.Item = results;
 
     res.render("manageItems", hbsObject);
@@ -252,6 +252,7 @@ router.get("/iteminfo1/:id", function (req, res) {
         res.render("itemInfo", infoObj);
       });
       infoObj = [];
+      hbsObject.user = req.user ? req.user.id : null;
     });
 
     router.post("/iteminfo1/:id", function (req, res) {
@@ -286,6 +287,7 @@ router.get("/category/:category", function (req, res) {
         .then(function () {
           db.Category.findAll({}).then(function (anotherresult) {
             catObj.categories = anotherresult;
+            catObj.user = req.user ? req.user.id : null
             res.render("index", catObj);
           });
         });
@@ -298,6 +300,7 @@ router.get("/about", function(req, res) {
     anotherObject = {
       categories: result
     };
+    anotherObject.user = req.user ? req.user.id : null;
     res.render("about", anotherObject);
   });
 });
@@ -308,6 +311,7 @@ router.get("/howitworks", function(req, res) {
     anotherObject = {
       categories: result
     };
+    anotherObject.user = req.user ? req.user.id : null;
     res.render("howitworks", anotherObject);
   });
 });
