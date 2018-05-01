@@ -4,6 +4,10 @@
     
 }
 
+.navbar-brand{
+    font-family: 'Titan One', cursive;
+
+}
 #itemInfoImg{
     height: 450px;
     width: 100%;
