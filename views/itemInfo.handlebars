@@ -128,6 +128,40 @@
                     data: rentedObj
                 })
             });
+</div>
+</div>
+<script> 
+    //console.log("top of script before anything ");
+    function inititeminfo() {
+        getUserMap();
+        calendar();
+        var rentDates = [];
+        var rentedDates = $("#rentedDates");
+        $('#calendar').on('change viewChange', function (event) {
+            var date = event.args.date;
+            // var view = event.args.view;
+            // var viewFrom = view.from;
+            // var viewTo = view.to;         
+            rentDates.push(convertDate(date));
+            //rentedDates.empty();
+            rentedDates.text(rentDates);
+
+           var rentedObj = {rentDates};
+
+           $.ajax("/iteminfo1", {
+               type: "POST",
+               data: rentedObj
+           })
+        });
+    };
+    function convertDate(inputDate) {
+        //var d = new Date (inputDate)
+        //console.log( "datee: ", d);
+        var dd = inputDate.getDate();
+        var mm = inputDate.getMonth() + 1; //January is 0!
+        var yyyy = inputDate.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
         };
         function convertDate(inputDate) {
         
@@ -153,6 +187,28 @@
             console.log(" \n\n in iteminfo before \n\n ", userAdd);
             g_geoCode(userAdd, ourMap);
             console.log(" in iteminfo afetr");
+        var output = yyyy + "-" + mm + "-" + dd;
+        console.log(output);
+        return (output);
+    };
+
+    var getUserMap = function () {
+        console.log(" in script");
+        var userAdd = $('#gAddress').text();
+        console.log(" \n\n in iteminfo before \n\n ", userAdd);
+        g_geoCode(userAdd, ourMap);
+        console.log(" in iteminfo after");
+    }
+
+    var calendar = function () {
+        //grab string from html that contains the dates,
+        // create an array - then convert to dates.
+        var restrictedDates = $('#rented').text().trim().split(',');
+        //convert into array of date, need to 
+        //add 24 hours-  too long of story why
+        for (let i = 0; i < restrictedDates.length; i++) {
+            restrictedDates[i] = new Date(restrictedDates[i]);
+            restrictedDates[i].setHours(25);
         }
 
         var calendar = function () {

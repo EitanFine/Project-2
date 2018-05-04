@@ -3,6 +3,11 @@ var Category = require('./category');
 var User = require('./user');
 
 //ITEM TABLE - 
+
+// 04/30 added imageURL
+
+// need to import category , and user
+
 module.exports = function (sequelize, DataTypes) {
     var Item = sequelize.define("Item", {
 

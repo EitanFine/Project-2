@@ -29,6 +29,10 @@ router.get("/signUp", function(req, res) {
         // }
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
+
+        //console.log("ANOTHER OBJECT: ", anotherObject);
+        console.log("USER: ", )
+
         res.render("signUp", anotherObject);
       })
     );
@@ -59,6 +63,37 @@ router.get("/login", function(req, res) {
         res.render("logIn", anotherObject);
       })
     );
+
+router.get("/login", function(req, res){
+// need to wrap the binary image
+db.Category.findAll({})
+.then(function(result) {
+  anotherObject = {
+    categories: result
+  };
+})
+.then(
+  db.Item.findAll({}).then(function(results) {
+    for (let i = 0; i < results.length; i++) {
+      //convert the binary image into something handlebars image can understand
+
+      const element = results[i];
+      if (element.itemImage !== null) {
+        element.itemImage = new Buffer(element.itemImage).toString(
+          "base64"
+        );
+      }
+    }
+
+    anotherObject.Item = results;
+    anotherObject.user = req.user ? req.user.id : null;
+
+    //console.log("ANOTHER OBJECT: ", anotherObject);
+    console.log("USER: ", )
+
+    res.render("logIn", anotherObject);
+  })
+);
 });
 
 //main page 
@@ -84,6 +119,10 @@ router.get("/", function (req, res) {
         // }
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
+
+        //console.log("ANOTHER OBJECT: ", anotherObject);
+        console.log("USER: ", )
+
         res.render("index", anotherObject);
       })
     );
@@ -206,6 +245,8 @@ router.delete("/manageItems/id/:id", function(req, res) {
     res.json(data);
   })
 });
+ 
+// 04/30 jp.added imageURL
 
 var infoObj;
 router.get("/iteminfo1/:id", function (req, res) {
@@ -242,6 +283,7 @@ router.get("/iteminfo1/:id", function (req, res) {
           itemPrice: result.itemPrice,
           itemName: result.itemName,
           itemImage: result.itemImage,
+          itemURL: result.itemURL,
           name: resultU.name,
           email: resultU.email,
           streetAddress: resultU.streetAddress,
@@ -263,6 +305,8 @@ router.get("/iteminfo1/:id", function (req, res) {
     });
 
   });
+    });   
+  });  
 });
 
 var catObj = {};
