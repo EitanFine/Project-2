@@ -17,16 +17,16 @@ router.get("/signUp", function(req, res) {
     })
     .then(
       db.Item.findAll({}).then(function (results) {
-        for (let i = 0; i < results.length; i++) {
-          //convert the binary image into something handlebars image can understand
+        // for (let i = 0; i < results.length; i++) {
+        //   //convert the binary image into something handlebars image can understand
 
-          const element = results[i];
-          if (element.itemImage !== null) {
-            element.itemImage = new Buffer(element.itemImage).toString(
-              "base64"
-            );
-          }
-        }
+        //   const element = results[i];
+        //   if (element.itemImage !== null) {
+        //     element.itemImage = new Buffer(element.itemImage).toString(
+        //       "base64"
+        //     );
+        //   }
+        // }
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
         res.render("signUp", anotherObject);
@@ -45,15 +45,15 @@ router.get("/login", function(req, res) {
     })
     .then(
       db.Item.findAll({}).then(function (results) {
-        for (let i = 0; i < results.length; i++) {
-          //convert the binary image into something handlebars image can understand
-          const element = results[i];
-          if (element.itemImage !== null) {
-            element.itemImage = new Buffer(element.itemImage).toString(
-              "base64"
-            );
-          }
-        }
+        // for (let i = 0; i < results.length; i++) {
+        //   //convert the binary image into something handlebars image can understand
+        //   const element = results[i];
+        //   if (element.itemImage !== null) {
+        //     element.itemImage = new Buffer(element.itemImage).toString(
+        //       "base64"
+        //     );
+        //   }
+        // }
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
         res.render("logIn", anotherObject);
@@ -73,15 +73,15 @@ router.get("/", function (req, res) {
     })
     .then(
       db.Item.findAll({}).then(function (results) {
-        for (let i = 0; i < results.length; i++) {
-          //convert the binary image into something handlebars image can understand
-          const element = results[i];
-          if (element.itemImage !== null) {
-            element.itemImage = new Buffer(element.itemImage).toString(
-              "base64"
-            );
-          }
-        }
+        // for (let i = 0; i < results.length; i++) {
+        //   //convert the binary image into something handlebars image can understand
+        //   const element = results[i];
+        //   if (element.itemImage !== null) {
+        //     element.itemImage = new Buffer(element.itemImage).toString(
+        //       "base64"
+        //     );
+        //   }
+        // }
         anotherObject.Item = results;
         anotherObject.user = req.user ? req.user.id : null;
         res.render("index", anotherObject);
