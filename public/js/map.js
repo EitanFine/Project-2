@@ -1,12 +1,7 @@
 var ApiKey_googleMaps = "AIzaSyDSMDeXXQxaeLJ4ZGXuwSKAM3NHBP4ckTc";
 
-/*
- cutting down a test script i had
-*/
 
-
-
-//geocode address
+//geocode address default address
 var my_address = "39 wallis ave 07306";
 
 
@@ -14,7 +9,6 @@ var my_address = "39 wallis ave 07306";
 
 
 function g_geoCode(address, callback) {
-    //need to make call from annie tmdb to get ishowtime movieid
     my_address = address.replace(/\s/g, '+');
     var src = "https://maps.googleapis.com/maps/api/geocode/json?address=" + my_address + "&key=" + ApiKey_googleMaps;
     console.log("top of g_geocode")
@@ -64,5 +58,4 @@ function ourMap(geoAddObj) {
 $(document).ready(function () {
     console.log("\n\nin Doc ready\n\n");
     inititeminfo();
-    //getUserMap();
 }); 

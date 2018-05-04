@@ -160,7 +160,7 @@
             // create an array - then convert to dates.
             var restrictedDates = $('#rented').text().trim().split(',');
             //convert into array of date, need to 
-            //add 24 hours-  too long of story why
+            //add 24 hours-  last date inarray - do not add 24 hours to
             for (let i = 0; i < restrictedDates.length ; i++) {
               restrictedDates[i] = new Date(restrictedDates[i]);
               if ( i !== restrictedDates.length - 1) {
